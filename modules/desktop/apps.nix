@@ -45,6 +45,7 @@ in
         neofetch # system summary
         keepassxc # password vault
         onlyoffice-desktopeditors
+        vesktop
       ]
       ++ config.desktop.apps.extraPackages;
 

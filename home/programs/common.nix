@@ -45,6 +45,8 @@
     sioyek
 
     rofi
+
+    youtube-music
   ];
   programs = {
     tmux = {
