@@ -27,9 +27,9 @@
     docker-compose
     kubectl
 
-    nodejs
-    nodePackages.npm
-    nodePackages.pnpm
+    #nodejs
+    #nodePackages.npm
+    #nodePackages.pnpm
     yarn
 
     # db related

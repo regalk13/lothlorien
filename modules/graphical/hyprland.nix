@@ -42,7 +42,7 @@
 
   qt.enable = true;
 
-   environment.variables = {
+  environment.variables = {
     QMLLS_BUILD_DIRS = [
       "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
       "${inputs.quickshell.packages.${pkgs.system}.default}/lib/qt-6/qml"

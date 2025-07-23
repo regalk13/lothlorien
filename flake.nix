@@ -18,6 +18,8 @@
       url = "github:nix-community/neovim-nightly-overlay";
     };
 
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+
     treefmt-nix = {
       type = "github";
       owner = "numtide";
