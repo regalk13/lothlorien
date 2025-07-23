@@ -12,6 +12,7 @@ in
       system = "x86_64-linux";
       desktop = true;
       extraImports = [
+        inputs.spicetify-nix.nixosModules.default
         ../modules/graphical/hyprland.nix
         ../modules/cli/tools.nix
         ../modules/core
@@ -19,6 +20,7 @@ in
         ../modules/desktop/apps.nix
         ../modules/desktop/fonts.nix
         ../modules/desktop/digital-logic-sim.nix
+        ../modules/desktop/spotify.nix
         ../modules/networking/firewall.nix
         ../modules/networking/ssh.nix
         ../modules/networking/redis.nix

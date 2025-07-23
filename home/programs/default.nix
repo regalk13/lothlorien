@@ -8,6 +8,6 @@
     ./helix.nix
     # ./gtk.nix
     ./latex.nix
-    ./games.nix
+    # ./games.nix
   ];
 }
