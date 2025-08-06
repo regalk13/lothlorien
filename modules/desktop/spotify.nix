@@ -13,6 +13,7 @@ in
       adblock
       hidePodcasts
       shuffle
+      songStats
     ];
     theme = spicePkgs.themes.catppuccin;
     colorScheme = "mocha";
