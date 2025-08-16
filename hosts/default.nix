@@ -26,6 +26,7 @@ in
         ../modules/networking/redis.nix
         ../modules/hardware/audio.nix
         ../modules/hardware/sensors.nix
+        ../modules/fcitx5/default.nix
       ];
     };
     osto-lomi = mkHost {
