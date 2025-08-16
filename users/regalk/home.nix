@@ -9,6 +9,7 @@
     ./graphical/hyprland
     ./graphical/waybar
     ./graphical/hyprpaper
+    ./graphical/fcitx5
   ];
 
   programs.git = {
