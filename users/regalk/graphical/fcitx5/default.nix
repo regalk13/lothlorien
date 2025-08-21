@@ -21,6 +21,5 @@
   '';
 
   # optional: a backup that your Hypr exec-once can restore from
-  xdg.configFile."fcitx5/profile-bak".text =
-    config.xdg.configFile."fcitx5/profile".text;
+  xdg.configFile."fcitx5/profile-bak".text = config.xdg.configFile."fcitx5/profile".text;
 }
