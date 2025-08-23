@@ -15,6 +15,15 @@
 
 (use-package no-littering)
 
+(use-package rime
+  :custom
+  ;; use C-\ to toggle input method
+  (default-input-method "rime")
+
+  ;; point to your existing fcitx5-rime data
+  (rime-share-data-dir "~/.local/share/fcitx5/rime")
+  (rime-user-data-dir "~/.local/share/fcitx5/rime") ;; optional but recommended
+)
 ;; === Disable default UI elements ===
 (scroll-bar-mode -1)
 (tool-bar-mode -1)

@@ -64,6 +64,9 @@ let
 
       # Other
       no-littering
+
+      # Chinese
+      rime
     ]
   );
 in
