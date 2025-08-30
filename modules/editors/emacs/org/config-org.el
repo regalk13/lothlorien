@@ -44,6 +44,8 @@
   ;; Increase LaTeX preview size (C-c C-x C-l)
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
+  (setq org-latex-create-formula-image-program 'dvisvgm)
+
   ;; Capture templates
   (setq org-capture-templates
     '(
