@@ -10,6 +10,7 @@
     ./graphical/waybar
     ./graphical/hyprpaper
     ./graphical/fcitx5
+    ./graphical/fox
   ];
 
   programs.git = {

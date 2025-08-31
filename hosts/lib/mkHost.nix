@@ -34,7 +34,7 @@ let
         useGlobalPkgs = true;
         useUserPackages = true;
         extraSpecialArgs = { inherit inputs system username; };
-        sharedModules = [ (self + /home/default.nix) ];
+        sharedModules = [ inputs.schizofox.homeManagerModules.default  (self + /home/default.nix) ];
         users.${username} = import "${self}/users/${username}/home.nix";
       };
     })

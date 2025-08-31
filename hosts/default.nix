@@ -13,6 +13,7 @@ in
       desktop = true;
       extraImports = [
         inputs.spicetify-nix.nixosModules.default
+        inputs.aagl.nixosModules.default
         ../modules/graphical/hyprland.nix
         ../modules/cli/tools.nix
         ../modules/core
@@ -26,24 +27,7 @@ in
         ../modules/hardware/audio.nix
         ../modules/hardware/sensors.nix
         ../modules/fcitx5/default.nix
-      ];
-    };
-    gwaeron = mkHost {
-      name = "gwaeron";
-      system = "x86_64-linux";
-      desktop = true;
-      extraImports = [
-        ../modules/graphical/hyprland.nix
-        ../modules/cli/tools.nix
-        ../modules/core
-        ../modules/core/locale.nix
-        ../modules/desktop/apps.nix
-        ../modules/desktop/fonts.nix
-        ../modules/networking/firewall.nix
-        ../modules/networking/ssh.nix
-        ../modules/hardware/audio.nix
-        ../modules/hardware/sensors.nix
-        ../modules/networking/jellyfin.nix
+        ../modules/desktop/games
       ];
     };
     osto-lomi = mkHost {
