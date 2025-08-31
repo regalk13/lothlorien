@@ -8,7 +8,7 @@ _default:
 
 [private]
 rebuild goal *args:
-    sudo {{ rebuild_cmd }} {{ goal }} --flake {{ flake }} {{ args }} |& nom
+    sudo {{ rebuild_cmd }} {{ goal }} --show-trace --flake {{ flake }} {{ args }} |& nom
 
 [private]
 builder goal *args:
