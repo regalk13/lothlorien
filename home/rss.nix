@@ -182,7 +182,7 @@ in
 {
   programs.newsboat = {
     enable = true;
-    browser = "zen";
+    browser = "firefox";
     autoReload = false;
     urls =
       youTubeFeeds [
