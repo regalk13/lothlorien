@@ -12,8 +12,6 @@
     p7zip
 
     vscodium
-    #  inputs.zen-browser.packages."${system}".twilight
-    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     # utils
     ripgrep
     htop

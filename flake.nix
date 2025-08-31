@@ -30,12 +30,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     hyprland.url = "github:hyprwm/Hyprland";
-
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    
     digital-logic-sim = {
       url = "github:regalk13/digital-logic-sim-flake";
     };
