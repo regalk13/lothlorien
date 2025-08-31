@@ -47,12 +47,12 @@ in
         onlyoffice-desktopeditors
         vesktop
         qbittorrent
+        gparted
+        hyprpolkitagent
       ]
       ++ config.desktop.apps.extraPackages;
 
     ## dconf is often required for GTK settings portals
     programs.dconf.enable = true;
-
-    ## Feel free to add light desktop daemons (clipman, polkit-gnome …)
   };
 }
