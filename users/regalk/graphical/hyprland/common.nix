@@ -12,7 +12,6 @@
     touchpad.natural_scroll = false;
   };
 
-  wayland.windowManager.hyprland.settings.gestures.workspace_swipe = false;
   wayland.windowManager.hyprland.settings.dwindle = {
     pseudotile = true;
     preserve_split = true;

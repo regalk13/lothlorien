@@ -46,6 +46,7 @@ in
         keepassxc # password vault
         onlyoffice-desktopeditors
         vesktop
+        qbittorrent
       ]
       ++ config.desktop.apps.extraPackages;
 
