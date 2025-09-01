@@ -45,7 +45,6 @@ in
         neofetch # system summary
         keepassxc # password vault
         onlyoffice-desktopeditors
-        vesktop
         qbittorrent
         gparted
         hyprpolkitagent
@@ -54,5 +53,6 @@ in
 
     ## dconf is often required for GTK settings portals
     programs.dconf.enable = true;
+    services.flatpak.enable = true;
   };
 }
