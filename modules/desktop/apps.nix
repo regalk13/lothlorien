@@ -48,6 +48,7 @@ in
         qbittorrent
         gparted
         hyprpolkitagent
+        nwg-look
       ]
       ++ config.desktop.apps.extraPackages;
 
