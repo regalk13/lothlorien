@@ -30,7 +30,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    
+
     digital-logic-sim = {
       url = "github:regalk13/digital-logic-sim-flake";
     };

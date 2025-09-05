@@ -19,7 +19,6 @@
     "ahci"
     "usbhid"
   ];
-  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.kernelParams = [ "nvme_core.default_ps_max_latency_us=0" ];
   boot.extraModulePackages = [ ];
