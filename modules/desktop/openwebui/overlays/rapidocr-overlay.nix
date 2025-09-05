@@ -1,9 +1,8 @@
-self: super:
-{
+_self: super: {
   python3Packages = super.python3Packages // {
-    rapidocr-onnxruntime = super.python3Packages.rapidocr-onnxruntime.overrideAttrs (oldAttrs: rec {
+    rapidocr-onnxruntime = super.python3Packages.rapidocr-onnxruntime.overrideAttrs (_oldAttrs: rec {
       version = "1.4.4";
-      
+
       src = super.fetchFromGitHub {
         owner = "RapidAI";
         repo = "RapidOCR";
@@ -11,11 +10,13 @@ self: super:
         hash = "sha256-x0VELDKOffxbV3v0aDFJFuDC4YfsGM548XWgINmRc3M=";
       };
 
-      models = super.fetchzip {
-        url = "https://github.com/RapidAI/RapidOCR/releases/download/v1.1.0/required_for_whl_v1.3.0.zip";
-        hash = "sha256-j/0nzyvu/HfNTt5EZ+2Phe5dkyPOdQw/OZTz0yS63aA=";
-        stripRoot = false;
-      } + "/required_for_whl_v1.3.0/resources/models";
+      models =
+        super.fetchzip {
+          url = "https://github.com/RapidAI/RapidOCR/releases/download/v1.1.0/required_for_whl_v1.3.0.zip";
+          hash = "sha256-j/0nzyvu/HfNTt5EZ+2Phe5dkyPOdQw/OZTz0yS63aA=";
+          stripRoot = false;
+        }
+        + "/required_for_whl_v1.3.0/resources/models";
 
       sourceRoot = "${src.name}/python";
 
@@ -53,7 +54,7 @@ self: super:
         onnxruntime
         tqdm
       ];
-      
+
       pythonImportsCheck = [ "rapidocr_onnxruntime" ];
 
       nativeCheckInputs = with super.python3Packages; [
