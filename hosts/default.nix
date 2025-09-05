@@ -28,7 +28,7 @@ in
         ../modules/hardware/sensors.nix
         ../modules/fcitx5/default.nix
         ../modules/desktop/games
-        ../modules/desktop/openwebui
+        # ../modules/desktop/openwebui
       ];
     };
     osto-lomi = mkHost {
