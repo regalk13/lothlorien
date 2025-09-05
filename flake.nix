@@ -47,10 +47,6 @@
       url = "github:ryantm/agenix";
     };
 
-    helix = {
-      url = "github:helix-editor/helix";
-    };
-
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
