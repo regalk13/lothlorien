@@ -44,6 +44,7 @@ in
         just # handy task runner
         nh # nix-helper from Determinate Systems
         sysstat
+        rage
       ]
       ++ config.cli.tools.extraPackages;
   };
