@@ -1,7 +1,7 @@
 ;; https://jwiegley.github.io/use-package/keywords/
 ;; The files can now be "loaded" with (require 'file-name)
 ;; TODO: restructure the file structure to make more sense than this
-(dolist (path '("config" "ide" "org"))
+(dolist (path '("config" "ide" "org" "elfeed"))
   (add-to-list 'load-path (locate-user-emacs-file path)))
 
 (require 'config-essential)
@@ -15,3 +15,4 @@
 
 (require 'config-org)
 (require 'config-org-roam)
+(require 'config-elfeed)
