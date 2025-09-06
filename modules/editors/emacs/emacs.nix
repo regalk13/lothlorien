@@ -67,6 +67,8 @@ let
 
       # Chinese
       rime
+
+      elfeed
     ]
   );
 in
