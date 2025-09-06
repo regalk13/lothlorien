@@ -1,3 +1,4 @@
+(require 'elfeed)
 
 (setq elfeed-feeds
       '(
@@ -39,5 +40,9 @@
         ("http://lesserwrong.com/feed.xml" systems AI singularity)
         ))
 
+(define-advice elfeed-search--header (:around (oldfun &rest args))
+  (if elfeed-db
+      (apply oldfun args)
+    "No database loaded yet"))
 
 (provide 'config-elfeed)

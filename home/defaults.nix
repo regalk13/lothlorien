@@ -23,7 +23,7 @@ in
         "chromium"
         "librewolf"
       ];
-      default = "librewolf";
+      default = "firefox";
     };
 
     editor = mkOption {
