@@ -25,9 +25,10 @@
     '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.2))))))
 
 (use-package rust-mode
+  :init
+  (setq rust-mode-treesitter-derive t)
   :mode "\\.rs\\'"
-  :hook ((rust-mode . lsp-deferred)
-         (rust-mode . rust-enable-format-on-save))
+  :hook ((rust-mode . rust-enable-format-on-save))
   :config
   (setq rust-format-on-save t))
 

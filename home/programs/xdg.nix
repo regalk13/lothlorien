@@ -1,4 +1,4 @@
-{ config, ... }:
+_:
 let
   browser = [ "Schizofox.desktop" ];
 
