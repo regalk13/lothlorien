@@ -10,6 +10,7 @@
   colorScheme,
 }:
 let
+  # lsp-proxy = callPackage ./lsp-proxy.nix { };
   emacsPackage = (emacsPackagesFor emacs30-pgtk).emacsWithPackages (
     epkgs: with epkgs; [
       # Use-package
@@ -36,10 +37,19 @@ let
       hydra
 
       # IDE
-      lsp-mode
-      lsp-ui
+      # lsp-mode
+      # lsp-ui
+      yasnippet
+      lsp-bridge
       # lsp-treemacs
-      lsp-ivy
+      # lsp-ivy
+
+      # lsp-proxy
+      #corfu
+      #eglot
+      #ht
+      #lsp-proxy
+
       company
       company-box
       undo-tree
@@ -51,8 +61,8 @@ let
       nix-mode
       markdown-mode
       # rust!
-      #rust-mode
-      #cargo
+      rust-mode
+      cargo
 
       # Note-taking
       org
@@ -69,6 +79,17 @@ let
       rime
 
       elfeed
+
+      # treesitter
+      tree-sitter
+      tree-sitter-langs
+      (treesit-grammars.with-grammars (
+        grammars: with grammars; [
+          tree-sitter-bash
+          tree-sitter-rust
+          tree-sitter-toml
+        ]
+      ))
     ]
   );
 in

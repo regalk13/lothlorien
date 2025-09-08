@@ -2,34 +2,20 @@
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
-(use-package lsp-mode
-	:commands (lsp lsp-deferred)
-	:hook (lsp-mode . os/lsp-mode-setup)
-	:custom (lsp-keymap-prefix "C-c l")
-	:config
-	(lsp-enable-which-key-integration t)
-)
+(require 'yasnippet)
+(yas-global-mode 1)
 
-(use-package lsp-ui
-	:hook (lsp-mode . lsp-ui-mode)
-	:custom
-	(lsp-ui-doc-position 'bottom)
-)
-
-;; (use-package lsp-treemacs
-;; 	:after lsp-mode
-;; )
-
-(use-package lsp-ivy)
+(require 'lsp-bridge)
+(global-lsp-bridge-mode)
 
 (use-package company
-	:after lsp-mode
-	:hook (lsp-mode . company-mode)
+	:after lsp-bridge
+	:hook (lsp-bridge . company-mode)
 	:bind (:map company-active-map
 					("<tab>" . company-complete-selection)
 					;; ("<return>" . company-complete-selection)
 				)
-			  (:map lsp-mode-map
+			  (:map lsp-bridge-map
 					("<tab>" . company-indent-or-complete-common)
 				)
 	:custom
