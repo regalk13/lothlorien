@@ -58,7 +58,7 @@ let
 
       # Languages
       typescript-mode
-      nix-mode
+      nix-ts-mode
       markdown-mode
       # rust!
       rust-mode
@@ -88,6 +88,7 @@ let
           tree-sitter-bash
           tree-sitter-rust
           tree-sitter-toml
+	        tree-sitter-nix
         ]
       ))
     ]

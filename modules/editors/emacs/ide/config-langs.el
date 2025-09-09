@@ -1,14 +1,13 @@
 ;; Typescript
 (use-package typescript-mode
   :mode "\\.ts\\'"
-  :hook (typescript-mode . lsp-deferred)
+  :hook (typescript-mode)
   :config
   (setq typescript-indent-level 2))
 
 ;; Nix
-(use-package nix-mode
-  :mode "\\.nix\\'"
-  :hook (nix-mode . lsp-deferred))
+(use-package nix-ts-mode
+  :mode "\\.nix\\'")
 
 ;; Markdown
 (use-package math-preview)
@@ -36,15 +35,6 @@
 (defun rust-enable-format-on-save ()
   "Enable formatting on save for rust-mode."
   (add-hook 'before-save-hook #'lsp-format-buffer nil t))
-
-;; Optionally install lsp-mode, lsp-ui and rust-analyzer if not done yet:
-(use-package lsp-mode
-  :commands lsp
-  :config
-  (setq lsp-rust-server 'rust-analyzer))
-
-(use-package lsp-ui
-  :commands lsp-ui-mode)
 
 ;; Optional: `cargo` integration for project commands
 (use-package cargo
