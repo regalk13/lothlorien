@@ -9,6 +9,16 @@
 (use-package nix-ts-mode
   :mode "\\.nix\\'")
 
+(use-package html-ts-mode
+  :mode "\\.html\\'\\|\\.vto\\'")
+
+(use-package emmet-mode
+  :init
+  (add-hook 'sgml-mode-hook 'emmet-mode)      ; For HTML, XML, etc.
+  (add-hook 'css-mode-hook 'emmet-mode)       ; For CSS
+  (add-hook 'web-mode-hook 'emmet-mode)       ; If you use web-mode for mixed content
+)
+
 ;; Markdown
 (use-package math-preview)
 

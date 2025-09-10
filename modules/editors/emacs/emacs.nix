@@ -63,6 +63,7 @@ let
       # rust!
       rust-mode
       cargo
+      emmet-mode
 
       # Note-taking
       org
@@ -89,6 +90,7 @@ let
           tree-sitter-rust
           tree-sitter-toml
 	        tree-sitter-nix
+          tree-sitter-html
         ]
       ))
     ]
