@@ -1,7 +1,6 @@
 ;; Typescript
-(use-package typescript-mode
+(use-package typescript-ts-mode
   :mode "\\.ts\\'"
-  :hook (typescript-mode)
   :config
   (setq typescript-indent-level 2))
 

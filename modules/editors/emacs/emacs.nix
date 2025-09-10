@@ -89,8 +89,9 @@ let
           tree-sitter-bash
           tree-sitter-rust
           tree-sitter-toml
-	        tree-sitter-nix
+	  tree-sitter-nix
           tree-sitter-html
+	  tree-sitter-typescript
         ]
       ))
     ]
