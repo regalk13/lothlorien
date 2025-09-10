@@ -15,7 +15,7 @@
 }:
 
 let
-  inherit (inputs) nixpkgs home-manager;
+  inherit (inputs) home-manager;
 
   pkgs = inputs.nixpkgs;
 

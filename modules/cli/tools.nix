@@ -44,7 +44,7 @@ in
         just # handy task runner
         nh # nix-helper from Determinate Systems
         sysstat
-	nixd
+        nixd
       ]
       ++ config.cli.tools.extraPackages;
   };
