@@ -15,4 +15,7 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 28)))
 
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode +1)
+
 (provide 'config-ui)
