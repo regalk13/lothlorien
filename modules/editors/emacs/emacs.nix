@@ -83,14 +83,13 @@ let
       typescript-mode
       nix-ts-mode
       markdown-mode
-      # qml-mode
+      qml-mode
       # rust!
       rust-mode
       cargo
       emmet-mode
 
-
-      qml-ts-mode
+      # qml-ts-mode
 
       # Note-taking
       org
