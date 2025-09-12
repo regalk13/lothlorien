@@ -6,19 +6,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    lix = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-    };
-
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    # neovim-nightly-overlay = {
+    #  url = "github:nix-community/neovim-nightly-overlay";
+    # };
 
     treefmt-nix = {
       type = "github";
