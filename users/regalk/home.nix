@@ -16,8 +16,4 @@
     userName = "Regalk";
     userEmail = "72028266+regalk13@users.noreply.github.com";
   };
-
-  home.packages = with pkgs; [
-    vesktop
-  ];
 }
