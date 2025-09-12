@@ -10,6 +10,29 @@
   colorScheme,
 }:
 let
+
+  qml-ts-mode = pkgs.emacsPackages.trivialBuild {
+    pname = "qml-ts-mode";
+    version = "master";
+    src = pkgs.fetchFromGitHub {
+      owner = "xhcoding";
+      repo = "qml-ts-mode";
+      rev = "22e5b4ee2036d01878e463b5e4cce80957c96619";
+      sha256 = "Mx3kwDx7sVwF9uQ5vOIXnfPkuOkuq3VN2KhkC/dod+4=";
+    };
+  };
+
+  tree-sitter-qmljs = pkgs.tree-sitter.buildGrammar {
+    language = "tree-sitter-qmljs";
+    version = "master";
+    src = pkgs.fetchFromGitHub {
+      owner = "yuja";
+      repo = "tree-sitter-qmljs";
+      rev = "6d4db242185721e1f5ef21fde613ca90c743ec47";
+      sha256 = "S6rBQRecJvPgyWq1iydFZgDyXbm9CZBw8kxzNI0cqdw=";
+    };
+  };
+
   # lsp-proxy = callPackage ./lsp-proxy.nix { };
   emacsPackage = (emacsPackagesFor emacs30-pgtk).emacsWithPackages (
     epkgs: with epkgs; [
@@ -60,10 +83,14 @@ let
       typescript-mode
       nix-ts-mode
       markdown-mode
+      # qml-mode
       # rust!
       rust-mode
       cargo
       emmet-mode
+
+
+      qml-ts-mode
 
       # Note-taking
       org
@@ -92,6 +119,7 @@ let
           tree-sitter-nix
           tree-sitter-html
           tree-sitter-typescript
+          tree-sitter-qmljs
         ]
       ))
     ]
