@@ -27,7 +27,7 @@ rustPlatform.buildRustPackage rec {
   meta = with lib; {
     description = "An LSP client for Emacs, implemented in Rust";
     homepage = "https://github.com/jadestrong/lsp-proxy";
-    license = licenses.mit; # Or appropriate license
+    license = licenses.mit;
     maintainers = with maintainers; [ ];
   };
 }
