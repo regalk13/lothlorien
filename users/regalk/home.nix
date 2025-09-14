@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
     ../../home/core.nix
@@ -6,6 +6,7 @@
     ../../home/rofi
     ../../home/shell
     ./graphical/hyprland
+    ./graphical/quickshell
     ./graphical/waybar
     ./graphical/hyprpaper
     ./graphical/fcitx5

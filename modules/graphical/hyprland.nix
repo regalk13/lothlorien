@@ -34,13 +34,7 @@
     grim
     slurp
     wl-clipboard
-    kdePackages.qtdeclarative
-    # QuickShell for hyprland
-    inputs.quickshell.packages.${pkgs.system}.default
-    qt6.qt5compat
   ];
-
-  qt.enable = true;
 
   environment.variables = {
     QMLLS_BUILD_DIRS = [
