@@ -5,6 +5,7 @@ import Quickshell.Hyprland
 import Quickshell.Wayland
 
 import qs.modules.common.decorators
+import qs.modules.overview
 
 Scope {
     id: bar
@@ -13,6 +14,8 @@ Scope {
     property bool bottomBar: false  // false = top bar, true = bottom bar
     property int cornerStyle: 0     // 0 = hug, 1 = float, 2 = plain
     property int screenRounding: 15
+
+    property bool overviewOpen: false
 
     function toChineseNumber(num) {
         const chineseNumbers = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
@@ -36,5 +39,9 @@ Scope {
         WlrLayershell.namespace: "quickshell:bar"
 
         BarComponent {}
+    }
+
+    Overview {
+        id: overview
     }
 }
