@@ -29,6 +29,18 @@ Item {
         RowLayout {
             spacing: 4
 
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton
+                z: -1 // Behind the workspace rectangles
+
+                onPressed: event => {
+                    if (event.button === Qt.RightButton) {
+                        bar.overviewOpen = true;
+                    }
+                }
+            }
+
             Repeater {
                 model: 10
 
