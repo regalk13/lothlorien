@@ -9,7 +9,7 @@ Scope {
 
     property int overviewRows: 2
     property int overviewColumns: 5
-    property real overviewScale: 0.18
+    property real overviewScale: 0.16
 
     Variants {
         model: Quickshell.screens
@@ -40,7 +40,7 @@ Scope {
 
             Rectangle {
                 anchors.fill: parent
-                color: "#80000000"
+                color: "transparent"
 
                 MouseArea {
                     anchors.fill: parent
@@ -49,7 +49,11 @@ Scope {
             }
 
             OverviewGrid {
-                anchors.centerIn: parent
+                    anchors {
+        top: parent.top
+        topMargin: 50  // Add some margin from the top
+        horizontalCenter: parent.horizontalCenter  // Keep it centered horizontally
+    }
                 monitor: Hyprland.monitorFor(overviewWindow.screen)
                 scale: overviewScope.overviewScale
                 rows: overviewScope.overviewRows
