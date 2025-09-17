@@ -59,7 +59,7 @@ Singleton {
         target: Hyprland
 
         function onRawEvent(event) {
-            updateAll()
+            updateAll();
         }
     }
 
@@ -69,7 +69,7 @@ Singleton {
         stdout: StdioCollector {
             id: clientsCollector
             onStreamFinished: {
-                root.windowList = JSON.parse(clientsCollector.text)
+                root.windowList = JSON.parse(clientsCollector.text);
                 let tempWinByAddress = {};
                 for (var i = 0; i < root.windowList.length; ++i) {
                     var win = root.windowList[i];

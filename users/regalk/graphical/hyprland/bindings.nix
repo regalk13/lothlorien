@@ -19,6 +19,9 @@ in
       "SUPER, P, pseudo," # dwindle
       "SUPER, J, togglesplit," # dwindle
 
+      # quickshell
+      # --
+
       # focus movement
       "SUPER, left,  movefocus, l"
       "SUPER, right, movefocus, r"
@@ -87,6 +90,11 @@ in
       ", XF86AudioPause, exec, playerctl play-pause"
       ", XF86AudioPlay,  exec, playerctl play-pause"
       ", XF86AudioPrev,  exec, playerctl previous"
+    ];
+
+    bindd = [
+      # quickshell
+      "Super, Tab, Toggle overview, global, quickshell:toggle_overview"
     ];
   };
 }

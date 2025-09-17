@@ -10,16 +10,27 @@ Scope {
     property int overviewRows: 2
     property int overviewColumns: 5
     property real overviewScale: 0.16
+    property bool overviewOpen: false
+
+    GlobalShortcut {
+        name: "toggle_overview"
+        onPressed: {
+            overviewScope.overviewOpen = true;
+        }
+
+        onReleased: {
+            overviewScope.overviewOpen = false;
+        }
+    }
 
     Variants {
         model: Quickshell.screens
-
         PanelWindow {
             id: overviewWindow
             required property var modelData
 
             screen: modelData
-            visible: bar.overviewOpen
+            visible: overviewScope.overviewOpen
 
             anchors {
                 top: true
@@ -32,35 +43,31 @@ Scope {
             WlrLayershell.namespace: "quickshell:overview"
             WlrLayershell.layer: WlrLayer.Overlay
 
-            Keys.onPressed: event => {
-                if (event.key === Qt.Key_Escape) {
-                    bar.overviewOpen = false;
-                }
-            }
-
             Rectangle {
                 anchors.fill: parent
                 color: "transparent"
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: bar.overviewOpen = false
+                    onClicked: overviewScope.overviewOpen = false
                 }
             }
 
             OverviewGrid {
-                    anchors {
-        top: parent.top
-        topMargin: 50  // Add some margin from the top
-        horizontalCenter: parent.horizontalCenter  // Keep it centered horizontally
-    }
+                focus: true
+
+                anchors {
+                    top: parent.top
+                    topMargin: 50
+                    horizontalCenter: parent.horizontalCenter
+                }
                 monitor: Hyprland.monitorFor(overviewWindow.screen)
                 scale: overviewScope.overviewScale
                 rows: overviewScope.overviewRows
                 columns: overviewScope.overviewColumns
 
                 onWorkspaceClicked: workspaceId => {
-                    bar.overviewOpen = false;
+                    overviewScope.overviewOpen = false;
                     Hyprland.dispatch(`workspace ${workspaceId}`);
                 }
             }

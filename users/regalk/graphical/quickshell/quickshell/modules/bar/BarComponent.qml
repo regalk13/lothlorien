@@ -18,7 +18,7 @@ Item {
             bottomMargin: (bar.cornerStyle === 0 && !bar.bottomBar) ? bar.screenRounding : 0
             topMargin: (bar.cornerStyle === 0 && bar.bottomBar) ? bar.screenRounding : 0
         }
-        color: bar.showBarBackground ? "#161616" : "transparent"
+        color: bar.showBarBackground ? "#1616161" : "transparent"
     }
 
     RowLayout {
@@ -28,18 +28,6 @@ Item {
 
         RowLayout {
             spacing: 4
-
-            MouseArea {
-                anchors.fill: parent
-                acceptedButtons: Qt.RightButton
-                z: -1 // Behind the workspace rectangles
-
-                onPressed: event => {
-                    if (event.button === Qt.RightButton) {
-                        bar.overviewOpen = true;
-                    }
-                }
-            }
 
             Repeater {
                 model: 10
