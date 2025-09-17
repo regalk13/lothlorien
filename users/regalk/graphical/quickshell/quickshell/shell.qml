@@ -1,4 +1,5 @@
 import "./modules/bar/"
+import "./modules/overview/"
 
 import Quickshell
 import QtQuick

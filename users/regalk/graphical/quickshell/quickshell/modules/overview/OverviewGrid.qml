@@ -18,10 +18,10 @@ Item {
     readonly property var toplevels: ToplevelManager.toplevels
     readonly property int totalWorkspaces: rows * columns
     readonly property int workspaceGroup: Math.floor(((monitor?.activeWorkspace?.id || 1) - 1) / totalWorkspaces)
-    
+
     readonly property real workspaceWidth: (monitor?.width || 1920) * scale
     readonly property real workspaceHeight: (monitor?.height || 1080) * scale
-    
+
     property var windows: HyprlandData.windowList
     property var windowByAddress: HyprlandData.windowByAddress
     property var monitorData: HyprlandData.monitors.find(m => m.id === monitor?.id)
@@ -51,10 +51,10 @@ Item {
             Rectangle {
                 id: workspace
                 property int workspaceValue: root.workspaceGroup * root.totalWorkspaces + index + 1
-                
+
                 Layout.preferredWidth: root.workspaceWidth
                 Layout.preferredHeight: root.workspaceHeight
-                
+
                 color: monitor?.activeWorkspace?.id === workspaceValue ? "#2d2d2d" : "#0f0f0f"
                 radius: 8
                 border.width: 2
@@ -86,35 +86,34 @@ Item {
 
         Repeater {
             model: {
-                if (!ToplevelManager.toplevels?.values) return [];
-                
-                return ToplevelManager.toplevels.values.filter((toplevel) => {
+                if (!ToplevelManager.toplevels?.values)
+                    return [];
+
+                return ToplevelManager.toplevels.values.filter(toplevel => {
                     const address = `0x${toplevel.HyprlandToplevel.address}`;
                     var win = root.windowByAddress[address];
-                    if (!win) return false;
-                    
-                    const inWorkspaceGroup = (
-                        root.workspaceGroup * root.totalWorkspaces < win.workspace?.id && 
-                        win.workspace?.id <= (root.workspaceGroup + 1) * root.totalWorkspaces
-                    );
+                    if (!win)
+                        return false;
+
+                    const inWorkspaceGroup = (root.workspaceGroup * root.totalWorkspaces < win.workspace?.id && win.workspace?.id <= (root.workspaceGroup + 1) * root.totalWorkspaces);
                     return inWorkspaceGroup;
                 });
             }
 
             delegate: OverviewWindow {
                 required property var modelData
-                
+
                 property var address: `0x${modelData.HyprlandToplevel.address}`
                 property var winData: root.windowByAddress[address]
                 property int workspaceIndex: ((winData?.workspace?.id || 1) - 1) - (root.workspaceGroup * root.totalWorkspaces)
                 property int workspaceRow: Math.floor(workspaceIndex / root.columns)
                 property int workspaceCol: workspaceIndex % root.columns
-                
+
                 toplevel: modelData
                 windowData: winData
                 monitorData: root.monitorData
                 scale: root.scale
-                
+
                 xOffset: (root.workspaceWidth + root.workspaceSpacing) * workspaceCol
                 yOffset: (root.workspaceHeight + root.workspaceSpacing) * workspaceRow
                 availableWorkspaceWidth: root.workspaceWidth

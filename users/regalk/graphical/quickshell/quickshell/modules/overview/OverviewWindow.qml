@@ -5,7 +5,7 @@ import Quickshell.Wayland
 
 Item {
     id: root
-    
+
     property var toplevel
     property var windowData
     property var monitorData
@@ -15,25 +15,27 @@ Item {
     property real xOffset: 0
     property real yOffset: 0
     property int widgetMonitorId: 0
-    
+
     property real initX: {
-        if (!windowData?.at) return xOffset;
+        if (!windowData?.at)
+            return xOffset;
         let relX = Math.max((windowData.at[0] - (monitorData?.x || 0) - (monitorData?.reserved?.[0] || 0)) * scale, 0);
         return relX + xOffset;
     }
-    
+
     property real initY: {
-        if (!windowData?.at) return yOffset;
+        if (!windowData?.at)
+            return yOffset;
         let relY = Math.max((windowData.at[1] - (monitorData?.y || 0) - (monitorData?.reserved?.[1] || 0)) * scale, 0);
         return relY + yOffset;
     }
-    
+
     x: initX
     y: initY
     width: (windowData?.size?.[0] || 200) * scale
     height: (windowData?.size?.[1] || 150) * scale
     opacity: windowData?.monitor === widgetMonitorId ? 1 : 0.4
-    
+
     layer.enabled: true
     layer.effect: OpacityMask {
         maskSource: Rectangle {
@@ -46,8 +48,8 @@ Item {
     ScreencopyView {
         id: windowPreview
         anchors.fill: parent
-        captureSource: bar.overviewOpen ? root.toplevel : null 
-        live: bar.overviewOpen
+        captureSource: overviewScope.overviewOpen ? root.toplevel : null
+        live: overviewScope.overviewOpen
 
         Rectangle {
             anchors.fill: parent
