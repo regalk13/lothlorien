@@ -44,7 +44,6 @@ Item {
         columns: root.columns
         rowSpacing: root.workspaceSpacing
         columnSpacing: root.workspaceSpacing
-
         Repeater {
             model: root.totalWorkspaces
 
@@ -72,6 +71,7 @@ Item {
 
                 MouseArea {
                     anchors.fill: parent
+                    hoverEnabled: true
                     onClicked: root.workspaceClicked(workspaceValue)
                 }
             }

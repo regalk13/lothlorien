@@ -49,7 +49,7 @@ Item {
         id: windowPreview
         anchors.fill: parent
         captureSource: overviewScope.overviewOpen ? root.toplevel : null
-        live: overviewScope.overviewOpen
+        live: true
 
         Rectangle {
             anchors.fill: parent
