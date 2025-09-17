@@ -12,17 +12,6 @@ Scope {
     property real overviewScale: 0.16
     property bool overviewOpen: false
 
-    GlobalShortcut {
-        name: "toggle_overview"
-        onPressed: {
-            overviewScope.overviewOpen = true;
-        }
-
-        onReleased: {
-            overviewScope.overviewOpen = false;
-        }
-    }
-
     Variants {
         model: Quickshell.screens
         PanelWindow {
@@ -54,8 +43,6 @@ Scope {
             }
 
             OverviewGrid {
-                focus: true
-
                 anchors {
                     top: parent.top
                     topMargin: 50
@@ -75,9 +62,7 @@ Scope {
     }
 
     GlobalShortcut {
-        name: "overviewToggle"
-        description: "Toggle workspace overview"
-
+        name: "toggle_overview"
         onPressed: {
             overviewScope.overviewOpen = !overviewScope.overviewOpen;
         }
