@@ -19,7 +19,8 @@
   wayland.windowManager.hyprland.settings.master.new_status = "master";
   wayland.windowManager.hyprland.settings.misc = {
     force_default_wallpaper = -1;
-    disable_hyprland_logo = false;
+    disable_hyprland_logo = true;
+    disable_splash_rendering = true;
   };
   wayland.windowManager.hyprland.settings.windowrulev2 = [
     "suppressevent maximize, class:.*"
