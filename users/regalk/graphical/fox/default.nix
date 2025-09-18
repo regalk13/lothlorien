@@ -32,10 +32,6 @@ _:
       enableCaptivePortal = true;
     };
 
-    settings = {
-      "privacy.resistFingerprinting" = false;
-    };
-
     theme = {
       font = "Inter";
       colors = {
