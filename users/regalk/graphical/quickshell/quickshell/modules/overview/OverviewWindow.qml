@@ -2,6 +2,7 @@ import QtQuick
 import Qt5Compat.GraphicalEffects
 import Quickshell
 import Quickshell.Wayland
+import QtQuick.Layouts
 
 Item {
     id: root
@@ -49,7 +50,7 @@ Item {
         id: windowPreview
         anchors.fill: parent
         captureSource: overviewScope.overviewOpen ? root.toplevel : null
-        live: true
+        live: overviewScope.overviewOpen
 
         Rectangle {
             anchors.fill: parent
