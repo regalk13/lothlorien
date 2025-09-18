@@ -7,7 +7,7 @@
     ../../home/shell
     ./graphical/hyprland
     ./graphical/quickshell
-    ./graphical/waybar
+    # ./graphical/waybar
     ./graphical/hyprpaper
     ./graphical/fcitx5
     ./graphical/fox

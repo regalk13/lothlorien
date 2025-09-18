@@ -14,6 +14,7 @@ _:
       env = HYPRCURSOR_THEME,macOS
       env = HYPRCURSOR_SIZE,40
       exec-once = hyprctl setcursor macOS 28
+      exec-once = qs
     '';
   };
 }
