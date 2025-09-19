@@ -4,11 +4,11 @@ _:
 
 {
   programs = {
-    alacritty = {
-      enable = true;
-    };
     ghostty = {
       enable = true;
+      settings = {
+        theme = "Oxocarbon";
+      };
     };
   };
 }
