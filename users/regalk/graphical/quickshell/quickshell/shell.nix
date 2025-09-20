@@ -1,12 +1,14 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 pkgs.mkShell {
   name = "qmlls-dev-shell";
-  
+
   buildInputs = with pkgs; [
     qt6.qtdeclarative
     qt6.qttools
-    
+
     qt6.qtbase
     qt6.qtquick3d
     qt6.qtmultimedia
