@@ -5,10 +5,29 @@ import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Wayland
 import qs.modules.common.decorators
+import qs.modules.services
 
 Item {
     id: root
     anchors.fill: parent
+    
+    readonly property HyprlandMonitor monitor: Hyprland.monitorFor(root.QsWindow.window?.screen)
+    readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
+    property string activeWindowAddress: `0x${activeWindow?.HyprlandToplevel?.address}`
+    property bool focusingThisMonitor: HyprlandData.activeWorkspace?.monitor == monitor?.name
+    property var biggestWindow: HyprlandData.biggestWindowForWorkspace(HyprlandData.monitors[root.monitor?.id]?.activeWorkspace.id)
+
+    function cleanAppName(appId) {
+        if (!appId) return "Desktop";
+        
+        if (appId.includes('.')) {
+            let parts = appId.split('.');
+            let appName = parts[parts.length - 1];
+            return appName.charAt(0).toUpperCase() + appName.slice(1);
+        }
+        
+        return appId.charAt(0).toUpperCase() + appId.slice(1);
+    }
 
     Rectangle {
         id: barBg
@@ -24,8 +43,45 @@ Item {
     RowLayout {
         anchors.fill: barBg
         anchors.margins: 15
-        anchors.topMargin: 6
+        anchors.topMargin: 4
         spacing: 16
+
+        Rectangle {
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: Math.max(150, appNameText.implicitWidth + 20)
+            
+            color: "#333333"
+            radius: 15
+            
+            Text {
+                id: appNameText
+                anchors.centerIn: parent
+                  text: {
+                    let rawAppId = root.focusingThisMonitor && root.activeWindow?.activated && root.biggestWindow ? 
+                        root.activeWindow?.appId :
+                        (root.biggestWindow?.class);
+                    return root.cleanAppName(rawAppId);
+                }
+                color: "#cccccc"
+                font.pixelSize: 12
+                font.weight: Font.Medium
+                elide: Text.ElideRight
+                
+                Behavior on text {
+                    PropertyAnimation {
+                        target: appNameText
+                        property: "opacity"
+                        from: 0.5
+                        to: 1.0
+                        duration: 200
+                    }
+                }
+            }
+        }
+
+        Item {
+            Layout.fillWidth: true
+        }
 
         Rectangle {
             Layout.preferredHeight: 30
@@ -51,9 +107,11 @@ Item {
                 }
                 
                 x: {
-                    let baseX = (parent.width - workspaceLayout.implicitWidth) / 2; // Center offset
+                    let containerWidth = parent.width;
+                    let layoutWidth = workspaceLayout.implicitWidth;
+                    let baseX = (containerWidth - layoutWidth) / 2;
                     let itemWidth = 30;
-                    let spacing = 4;
+                    let spacing = workspaceLayout.spacing;
                     return baseX + (activeIndicator.activeWorkspaceIndex * (itemWidth + spacing));
                 }
                 
@@ -140,27 +198,36 @@ Item {
             Layout.fillWidth: true
         }
 
-        Text {
-            id: clockText
-            color: "white"
-            font.pixelSize: 14
+        Rectangle {
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: Math.max(180, clockText.implicitWidth + 20)
+            
+            color: "#333333"
+            radius: 15
+            
+            Text {
+                id: clockText
+                anchors.centerIn: parent
+                color: "#cccccc"
+                font.pixelSize: 12
+                font.weight: Font.Medium
 
-            Timer {
-                interval: 1000
-                running: true
-                repeat: true
-                onTriggered: {
-                    clockText.text = Qt.formatDateTime(new Date(), "ddd MMM dd - hh:mm:ss");
+                Timer {
+                    interval: 1000
+                    running: true
+                    repeat: true
+                    onTriggered: {
+                        clockText.text = Qt.formatDateTime(new Date(), "ddd MMM dd - hh:mm:ss");
+                    }
                 }
-            }
 
-            Component.onCompleted: {
-                text = Qt.formatDateTime(new Date(), "ddd MMM dd - hh:mm:ss");
+                Component.onCompleted: {
+                    text = Qt.formatDateTime(new Date(), "ddd MMM dd - hh:mm:ss");
+                }
             }
         }
     }
 
-    // Rounding
     Item {
         id: roundDecorators
         anchors {
