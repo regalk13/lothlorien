@@ -6,14 +6,12 @@ _:
 
     misc.startPageURL = "about:blank";
 
-    # Disable Dark Reader
     extensions.darkreader.enable = true;
-
-    # Use default firefox ui
     extensions.simplefox.enable = false;
     search = {
-      defaultSearchEngine = "DuckDuckGo";
+      defaultSearchEngine = "Searx";
       removeEngines = [
+        "Google"
         "Bing"
         "Amazon.com"
         "eBay"
