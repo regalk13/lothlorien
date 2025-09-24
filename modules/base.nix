@@ -10,6 +10,10 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "video"
+      "render"
+      "input"
+      "seat"
     ];
   };
 
