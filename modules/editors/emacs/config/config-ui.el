@@ -4,9 +4,9 @@
 (set-face-attribute 'variable-pitch nil :font "DejaVu Sans" :height 120 :weight 'regular)
 
 ;; === Theme ===
-(require 'base16-nix-colors-theme)
-(setq base16-theme-256-color-source 'colors)
-(load-theme 'base16-nix-colors t)
+;; (require 'base16-nix-colors-theme)
+;; (setq base16-theme-256-color-source 'colors)
+;; (load-theme 'base16-nix-colors t)
 
 ;; === Modeline ===
 (use-package all-the-icons)
@@ -17,5 +17,7 @@
 
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode +1)
+
+(load-theme 'modus-vivendi :no-confirm)
 
 (provide 'config-ui)
