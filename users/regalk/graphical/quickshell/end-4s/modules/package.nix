@@ -1,5 +1,8 @@
-{pkgs, ...}: {
-home.packages = with pkgs; [
+{ pkgs, ... }:
+{
+  home.packages =
+    with pkgs;
+    [
       # # AUDIO #
       cava
       lxqt.pavucontrol-qt
@@ -77,19 +80,20 @@ home.packages = with pkgs; [
       gobject-introspection
       sassc
       opencv
-      (python3.withPackages (python-pkgs: with python-pkgs; [
-        build
-        pillow
-        setuptools-scm
-        wheel
-        pywayland
-        psutil
-        materialyoucolor
-        libsass
-        material-color-utilities
-        setproctitle
-      ]))
-
+      (python3.withPackages (
+        python-pkgs: with python-pkgs; [
+          build
+          pillow
+          setuptools-scm
+          wheel
+          pywayland
+          psutil
+          materialyoucolor
+          libsass
+          material-color-utilities
+          setproctitle
+        ]
+      ))
 
       # # WIDGETS #
       glib
@@ -97,7 +101,8 @@ home.packages = with pkgs; [
       translate-shell
       wlogout
 
-    ] ++ (with pkgs.nerd-fonts; [
+    ]
+    ++ (with pkgs.nerd-fonts; [
       # nerd fonts
       ubuntu
       ubuntu-mono
@@ -108,8 +113,7 @@ home.packages = with pkgs; [
       space-mono
     ]);
 
-    services.gammastep.enable = true;
-    services.gammastep.provider = "geoclue2";
-    # services.network-manager-applet.enable = true;
+  services.gammastep.enable = true;
+  services.gammastep.provider = "geoclue2";
+  # services.network-manager-applet.enable = true;
 }
-

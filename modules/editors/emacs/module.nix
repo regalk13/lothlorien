@@ -6,7 +6,7 @@
 }:
 
 let
-  emacsDrv = pkgs.callPackage ./emacs.nix {};
+  emacsDrv = pkgs.callPackage ./emacs.nix { };
 in
 {
   options.regalk.emacs.enable = lib.mkEnableOption "Regalk’s custom Emacs";

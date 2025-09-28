@@ -19,7 +19,7 @@
 
   programs.hyprland-custom = {
     end4s.enable = true;
-    
+
     hyprland = {
       monitor = [
         ",1920x1080@75,auto,auto"
