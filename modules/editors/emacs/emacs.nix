@@ -4,8 +4,6 @@
   emacsPackagesFor,
   emacs30-pgtk,
   makeWrapper,
-
-# Color scheme
 }:
 let
 

@@ -50,6 +50,11 @@
     };
 
     schizofox.url = "github:schizofox/schizofox";
+
+    illogical-impulse-dotfiles = {
+      url = "github:regalk13/dots-hyprland";
+      flake = false;
+    };
   };
 
   outputs =
