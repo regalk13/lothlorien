@@ -5,9 +5,7 @@
   emacs30-pgtk,
   makeWrapper,
 
-  # Color scheme
-  callPackage,
-  colorScheme,
+# Color scheme
 }:
 let
 
@@ -41,7 +39,7 @@ let
       doom-modeline
       # (callPackage ./theme.nix { inherit colorScheme; })
       modus-themes
-      
+
       # Keybinds
       evil
       evil-collection
