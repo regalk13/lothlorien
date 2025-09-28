@@ -7,7 +7,7 @@
     ../../home/shell
     ./graphical/hyprland
     ./graphical/quickshell
-    ./graphical/hyprpaper
+    # /graphical/hyprpaper
     ./graphical/fcitx5
     ./graphical/fox
   ];
