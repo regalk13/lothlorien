@@ -95,7 +95,7 @@ Item {
                 id: activeIndicator
                 width: 30
                 height: 30
-                radius: 4
+                radius: 100
                 color: Qt.rgba(231, 143, 255, 0.15)
                 
                 property int activeWorkspaceIndex: {
@@ -148,7 +148,7 @@ Item {
 
                         Text {
                             anchors.centerIn: parent
-                            text: bar.toChineseNumber(workspaceId)
+                            text: workspaceId
                             color: parent.isActive ? "#be95ff" : (parent.hasWindows ? "#cccccc" : "#666666")
                             font.pixelSize: 12
                             
@@ -217,12 +217,12 @@ Item {
                     running: true
                     repeat: true
                     onTriggered: {
-                        clockText.text = Qt.formatDateTime(new Date(), "ddd MMM dd - hh:mm:ss");
+                        clockText.text = Qt.formatDateTime(new Date(), "hh:mm - dddd MM/dd");
                     }
                 }
 
                 Component.onCompleted: {
-                    text = Qt.formatDateTime(new Date(), "ddd MMM dd - hh:mm:ss");
+                    text = Qt.formatDateTime(new Date(), "hh:mm - dddd MM/dd");
                 }
             }
         }
