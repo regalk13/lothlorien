@@ -1,6 +1,6 @@
 _: {
-imports = [
+  imports = [
     ./package.nix
     ./quickshell.nix
-];
+  ];
 }
