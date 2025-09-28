@@ -1,9 +1,6 @@
 { pkgs, inputs, ... }:
 {
-  qt = {
-    enable = true;
-    platformTheme.name = "kde6";
-  };
+  qt.enable = true;
   home.sessionVariables.ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
 
   home.packages = with pkgs; [

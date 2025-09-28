@@ -79,7 +79,9 @@
       libportal-gtk4
       gobject-introspection
       sassc
-      opencv
+      # opencv
+      mpvpaper
+      ffmpeg
       (python3.withPackages (
         python-pkgs: with python-pkgs; [
           build
@@ -92,6 +94,7 @@
           libsass
           material-color-utilities
           setproctitle
+          opencv4
         ]
       ))
 
@@ -112,8 +115,4 @@
       mononoki
       space-mono
     ]);
-
-  services.gammastep.enable = true;
-  services.gammastep.provider = "geoclue2";
-  # services.network-manager-applet.enable = true;
 }

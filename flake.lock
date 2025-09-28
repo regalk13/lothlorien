@@ -492,11 +492,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1759076381,
-        "narHash": "sha256-ZWAsJnJvjjLMjH6hl5o4zVOTEuL3tmBzaJcoQYJE+aE=",
+        "lastModified": 1759094452,
+        "narHash": "sha256-j7IOTFnQRDjX4PzYb2p6CPviAc8cDrcorzGpM8J89uM=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "c30036bdacbe5e87b49d6de6df652d56681ef457",
+        "rev": "f854b5bffbdd13cfe7edad0ee157d6947ff99619",
         "type": "github"
       },
       "original": {
@@ -680,11 +680,11 @@
     "illogical-impulse-dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1759091612,
-        "narHash": "sha256-/w36X/BRQkNiJLL5szdw079EFVIS74ppX+AB+xRDE24=",
+        "lastModified": 1759094596,
+        "narHash": "sha256-OiNQGgEjVHLHF8lTM3XCesN99KJ2kxlhKRBrZSo+el8=",
         "owner": "regalk13",
         "repo": "dots-hyprland",
-        "rev": "272c452a43a65388b2ac44330a4dbc305cc33996",
+        "rev": "231cd93a1c114da9694a4048f9c1b817ac580170",
         "type": "github"
       },
       "original": {
