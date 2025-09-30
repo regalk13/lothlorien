@@ -38,6 +38,8 @@
         ("https://commandpattern.org/feed/" cs systems robotics)
         ("https://ludwigabap.bearblog.dev/feed/" cs systems ml)
         ("http://lesserwrong.com/feed.xml" systems AI singularity)
+
+        ("https://regalk.dev/posts.rss" systems hpc cs lifestyle)
         ))
 
 (define-advice elfeed-search--header (:around (oldfun &rest args))
