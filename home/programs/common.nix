@@ -40,6 +40,8 @@
     # sioyek
     sioyek
 
+    zathura
+
     rofi
   ];
   programs = {
