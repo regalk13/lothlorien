@@ -49,6 +49,8 @@ in
         gparted
         hyprpolkitagent
         nwg-look
+        qemu
+        quickemu
       ]
       ++ config.desktop.apps.extraPackages;
 

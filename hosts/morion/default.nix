@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -12,6 +12,17 @@
 
   desktop.apps.enable = true;
   cli.tools.enable = true;
+
+
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    v4l2loopback
+  ];
+  
+  boot.kernelModules = [ "v4l2loopback" ];
+  
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=10 card_label="OBS-Camera" exclusive_caps=1
+  '';
 
   boot.loader.systemd-boot.enable = true;
   #boot.loader.grub.enable = true;
