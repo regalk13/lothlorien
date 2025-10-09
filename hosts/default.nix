@@ -12,7 +12,6 @@ in
       system = "x86_64-linux";
       desktop = true;
       extraImports = [
-        inputs.aagl.nixosModules.default
         ../modules/graphical/hyprland.nix
         ../modules/cli/tools.nix
         ../modules/core

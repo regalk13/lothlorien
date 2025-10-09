@@ -39,12 +39,12 @@
   environment.variables = {
     QMLLS_BUILD_DIRS = [
       "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
-      "${inputs.quickshell.packages.${pkgs.system}.default}/lib/qt-6/qml"
+    #  "${inputs.quickshell.packages.${pkgs.system}.default}/lib/qt-6/qml"
     ];
 
     QML2_IMPORT_PATH = [
       "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
-      "${inputs.quickshell.packages.${pkgs.system}.default}/lib/qt-6/qml"
+    #  "${inputs.quickshell.packages.${pkgs.system}.default}/lib/qt-6/qml"
     ];
   };
 

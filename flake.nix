@@ -35,22 +35,17 @@
       url = "github:ryantm/agenix";
     };
 
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    # quickshell = {
+    #  url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    
     schizofox.url = "github:schizofox/schizofox";
 
-    illogical-impulse-dotfiles = {
-      url = "github:regalk13/dots-hyprland";
-      flake = false;
-    };
+    # illogical-impulse-dotfiles = {
+    # url = "github:regalk13/dots-hyprland";
+    #  flake = false;
+    # };
   };
 
   outputs =
