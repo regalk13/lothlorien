@@ -34,6 +34,7 @@
   # ugly module
   regalk.emacs.enable = true;
 
+  services.desktopManager.cosmic.enable = true;
   networking.hostName = "morion"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
