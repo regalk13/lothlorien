@@ -14,6 +14,11 @@
 
     services.xserver.enable = true;
     services.displayManager.gdm.enable = true;
+    xdg.portal.enable = true;
+    
+    xdg.portal.extraPortals = [
+        pkgs.xdg-desktop-portal-wlr
+    ];
 
     hardware.graphics = {
         package = pkgs.mesa;

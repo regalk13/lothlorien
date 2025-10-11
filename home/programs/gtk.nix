@@ -34,13 +34,4 @@
       '';
     };
   };
-
-  xdg.portal = {
-    config = {
-      hyprland.preferred = [
-        "hyprland"
-        "gtk"
-      ];
-    };
-  };
 }

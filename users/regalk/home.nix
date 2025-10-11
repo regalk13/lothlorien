@@ -3,11 +3,7 @@
   imports = [
     ../../home/core.nix
     ../../home/programs
-    ../../home/rofi
     ../../home/shell
-    #./graphical/hyprland
-    # ./graphical/quickshell
-    # /graphical/hyprpaper
     ./graphical/fcitx5
     ./graphical/fox
   ];
