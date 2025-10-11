@@ -4,17 +4,12 @@
 }:
 {
   home.packages = with pkgs; [
-    # archives
     zip
     unzip
     p7zip
-
     vscodium
-    # utils
     ripgrep
     htop
-
-    # misc
     libnotify
     xdg-utils
     graphviz
@@ -23,26 +18,12 @@
     docker-compose
     kubectl
 
-    #nodejs
-    #nodePackages.npm
-    #nodePackages.pnpm
     yarn
-
-    # db related
-    dbeaver-bin
-    mycli
-    pgcli
 
     thunderbird
     postman
-    charm-freeze
-
-    # sioyek
     sioyek
-
     zathura
-
-    rofi
   ];
   programs = {
     tmux = {
@@ -89,9 +70,6 @@
   };
 
   services = {
-    # syncthing.enable = true;
-
-    # auto mount usb drives
     udiskie.enable = true;
   };
 }
