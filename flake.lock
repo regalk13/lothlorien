@@ -129,6 +129,22 @@
         "type": "github"
       }
     },
+    "dwl-source": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700897834,
+        "narHash": "sha256-gFqP3DSDDaABDaB07Xj5lwjPpFuJdeypz1eYs/pKfGM=",
+        "owner": "djpohly",
+        "repo": "dwl",
+        "rev": "58d33b79f90f7060d6d338d2abf345f16b88dd47",
+        "type": "github"
+      },
+      "original": {
+        "owner": "djpohly",
+        "repo": "dwl",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -814,6 +830,7 @@
         "agenix": "agenix",
         "digital-logic-sim": "digital-logic-sim",
         "disko": "disko",
+        "dwl-source": "dwl-source",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",

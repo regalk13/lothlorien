@@ -41,11 +41,11 @@
     #};
     
     schizofox.url = "github:schizofox/schizofox";
-
-    # illogical-impulse-dotfiles = {
-    # url = "github:regalk13/dots-hyprland";
-    #  flake = false;
-    # };
+    
+    dwl-source = {
+      url = "github:djpohly/dwl";
+      flake = false;
+    };
   };
 
   outputs =
