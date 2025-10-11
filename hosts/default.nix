@@ -12,7 +12,7 @@ in
       system = "x86_64-linux";
       desktop = true;
       extraImports = [
-        ../modules/graphical/hyprland.nix
+        # ../modules/graphical/hyprland.nix
         ../modules/cli/tools.nix
         ../modules/core
         ../modules/core/locale.nix
@@ -25,7 +25,7 @@ in
         ../modules/hardware/sensors.nix
         ../modules/fcitx5/default.nix
         ../modules/desktop/games
-        # ../modules/desktop/openwebui
+        ../modules/graphical/dwl
       ];
     };
     osto-lomi = mkHost {
