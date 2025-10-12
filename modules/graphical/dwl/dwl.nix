@@ -10,6 +10,7 @@
         ];
         patches = [
           ./patches/bar.patch
+         # ./patches/monitorconfig.patch
         ];
         configH = ./dwl-config.h;
       });
