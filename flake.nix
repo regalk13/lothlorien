@@ -30,7 +30,7 @@
     disko = {
       url = "github:nix-community/disko";
     };
-    
+
     agenix = {
       url = "github:ryantm/agenix";
     };
@@ -39,9 +39,9 @@
     #  url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
-    
+
     schizofox.url = "github:schizofox/schizofox";
-    
+
     dwl-source = {
       url = "github:djpohly/dwl";
       flake = false;
