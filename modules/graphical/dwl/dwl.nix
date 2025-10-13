@@ -18,7 +18,7 @@
               pkgs.wlroots
             ];
             patches = [
-              # ./patches/bar.patch
+            #   ./patches/bar.patch
             ];
           });
     })

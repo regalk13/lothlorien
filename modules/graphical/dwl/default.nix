@@ -7,27 +7,30 @@
     foot
     dwl
     grim
-    # slurp
+    slurp
     wl-clipboard
   ];
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config = {
-      common = {
-        default = [ "wlr" ];
-      };
-      pinnacle = {
-        default = [ "wlr" ];
-        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-        "org.freedesktop.impl.portal.Screenshot" = "wlr";
-        "org.freedesktop.impl.portal.Inhibit" = "none";
-      };
-    };
-  };
+ };
+  hardware.opengl.enable = true;
   hardware.graphics = {
     package = pkgs.mesa;
     enable32Bit = true;
+    
+    extraPackages = with pkgs; [
+      vulkan-loader
+      libva-utils
+      libvdpau-va-gl
+      
+      glfw
+      glew
+    ];
+    
+    extraPackages32 = with pkgs.driversi686Linux; [
+      libvdpau-va-gl
+    ];
   };
 }
