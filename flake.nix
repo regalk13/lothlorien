@@ -8,10 +8,6 @@
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # neovim-nightly-overlay = {
-    #  url = "github:nix-community/neovim-nightly-overlay";
-    # };
-
     treefmt-nix = {
       type = "github";
       owner = "numtide";
