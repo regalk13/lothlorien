@@ -28,10 +28,10 @@ in
 
     editor = mkOption {
       type = enum [
-        "nvim"
+        "vim"
         "codium"
       ];
-      default = "nvim";
+      default = "vim";
     };
 
     launcher = mkOption {

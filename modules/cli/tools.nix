@@ -41,8 +41,8 @@ in
         wget
         curl
         git
-        just # handy task runner
-        nh # nix-helper from Determinate Systems
+        just
+        nh
         sysstat
         nixd
       ]
