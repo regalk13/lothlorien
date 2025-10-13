@@ -2,7 +2,6 @@
 let
   tex = pkgs.texlive.combine {
     inherit (pkgs.texlive)
-      scheme-basic
       dvisvgm
       dvipng
       wrapfig
@@ -10,6 +9,15 @@ let
       ulem
       hyperref
       capt-of
+      apa7
+      collection-fontsrecommended
+      scalerel
+      scheme-medium
+      pgf
+      threeparttable
+      endfloat
+      biblatex
+      biblatex-apa
       ;
   };
 in
