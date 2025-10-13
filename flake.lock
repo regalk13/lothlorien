@@ -99,11 +99,11 @@
     "dwl-source": {
       "flake": false,
       "locked": {
-        "lastModified": 1760325768,
-        "narHash": "sha256-XcFBtqDZEaOgKGzj7AlfxyvYipYEu3OolsxGuz/fIxQ=",
+        "lastModified": 1760325524,
+        "narHash": "sha256-6tSpZiccJEaUjMHjIkO9g4c73ntzaBKLvolcxpAJIAY=",
         "owner": "regalk13",
         "repo": "dwl-fork",
-        "rev": "fcbcfdbd38e9ed7d74db88949de6ec9551e9ff25",
+        "rev": "e5d69b2e77c1b3d628b787c7ecafb064fa7ec17c",
         "type": "github"
       },
       "original": {
