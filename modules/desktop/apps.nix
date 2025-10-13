@@ -44,10 +44,9 @@ in
         scrot # screenshot helper (used by i3-lock blur scripts)
         neofetch # system summary
         keepassxc # password vault
-        onlyoffice-desktopeditors
         qbittorrent
+        libreoffice-qt6
         gparted
-        hyprpolkitagent
         nwg-look
         qemu
         quickemu
