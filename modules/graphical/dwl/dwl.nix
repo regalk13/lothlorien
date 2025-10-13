@@ -9,8 +9,8 @@
           (oldAttrs: rec {
             src = inputs.dwl-source;
             enableXWayland = true;
-            nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ 
-              pkgs.wlroots 
+            nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
+              pkgs.wlroots
             ];
             buildInputs = oldAttrs.buildInputs ++ [
               pkgs.fcft
