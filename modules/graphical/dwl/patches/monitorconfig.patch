@@ -32,7 +32,7 @@ index 8f498d2..4ccacd2 100644
  	*/
  	/* defaults */
 -	{ NULL,       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL,   -1,  -1 },
-+	{ NULL,       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, -1, -1, 0, 0, 75.0f, 0 ,1},
++	{ NULL,       0.55f, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, -1, -1, 0, 0, 0.0f, 0 ,1},
  };
 
  /* keyboard */

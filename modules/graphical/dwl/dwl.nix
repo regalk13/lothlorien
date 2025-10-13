@@ -1,19 +1,26 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   nixpkgs.overlays = [
     (_self: super: {
-      dwl = super.dwl.overrideAttrs (oldAttrs: rec {
-        enableXWayland = true;
-        buildInputs = oldAttrs.buildInputs ++ [
-          pkgs.fcft
-          pkgs.libdrm
-        ];
-        patches = [
-          ./patches/bar.patch
-         # ./patches/monitorconfig.patch
-        ];
-        configH = ./dwl-config.h;
-      });
+      dwl =
+        (super.dwl.override {
+          # configH = ./dwl-config.h;
+        }).overrideAttrs
+          (oldAttrs: rec {
+            src = inputs.dwl-source;
+            enableXWayland = true;
+            nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ 
+              pkgs.wlroots 
+            ];
+            buildInputs = oldAttrs.buildInputs ++ [
+              pkgs.fcft
+              pkgs.libdrm
+              pkgs.wlroots
+            ];
+            patches = [
+              # ./patches/bar.patch
+            ];
+          });
     })
   ];
 }
