@@ -21,7 +21,6 @@
     yarn
 
     thunderbird
-    postman
     sioyek
     zathura
   ];
