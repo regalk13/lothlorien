@@ -1,4 +1,9 @@
 { pkgs, ... }:
+let
+  slstatus-custom = pkgs.slstatus.override {
+    conf = ./slstatus-config.h;
+  };
+in
 {
   imports = [ ./dwl.nix ];
 
@@ -9,7 +14,7 @@
     grim
     slurp
     wl-clipboard
-    slstatus
+    slstatus-custom
   ];
   xdg.portal = {
     enable = true;
