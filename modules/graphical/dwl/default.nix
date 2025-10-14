@@ -9,6 +9,7 @@
     grim
     slurp
     wl-clipboard
+    slstatus
   ];
   xdg.portal = {
     enable = true;
