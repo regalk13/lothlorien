@@ -29,13 +29,8 @@
       url = "github:ryantm/agenix";
     };
 
-    # quickshell = {
-    #  url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
-
     schizofox.url = "github:schizofox/schizofox";
-
+    
     dwl-source = {
       url = "github:regalk13/dwl-fork";
       flake = false;
