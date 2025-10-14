@@ -18,6 +18,7 @@ let
       endfloat
       biblatex
       biblatex-apa
+      pgfplots
       ;
   };
 in
