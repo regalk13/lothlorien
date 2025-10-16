@@ -26,6 +26,7 @@ in
         ../modules/fcitx5/default.nix
         ../modules/desktop/games
         ../modules/graphical/dwl
+        ../modules/server/services/mpd.nix
       ];
     };
     osto-lomi = mkHost {
