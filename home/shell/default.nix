@@ -9,7 +9,6 @@ in
     ./nushell
     ./common.nix
     ./terminals.nix
-    ./tmux.nix
   ];
 
   # add environment variables
