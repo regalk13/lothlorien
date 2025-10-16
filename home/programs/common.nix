@@ -20,9 +20,12 @@
 
     yarn
 
+    hoppscotch
+
     thunderbird
     sioyek
     zathura
+    ncmpcpp
   ];
   programs = {
     tmux = {
