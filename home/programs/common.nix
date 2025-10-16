@@ -28,7 +28,7 @@
     ncmpcpp
 
     dvtm
-    adbuco
+    abduco
   ];
   programs = {
     bat = {
