@@ -39,7 +39,7 @@ in
     environment.systemPackages =
       with pkgs;
       [
-        xfce.thunar # file manager
+        lf
         nnn # TUI file manager
         scrot # screenshot helper (used by i3-lock blur scripts)
         neofetch # system summary
