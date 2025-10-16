@@ -56,7 +56,7 @@
   system.stateVersion = "24.05"; # match the channel you added above
 
   users.users.regalk = {
-    openssh.authorizedKeys.keys = [];
+    openssh.authorizedKeys.keys = [ ];
   };
 
   environment.systemPackages = with pkgs; [
