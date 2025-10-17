@@ -6,6 +6,5 @@
     ./media.nix
     ./xdg.nix
     ./latex.nix
-    ./nvim.nix
   ];
 }

@@ -21,8 +21,9 @@ in
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  hardware.opengl.enable = true;
+
   hardware.graphics = {
+    enable = true;
     package = pkgs.mesa;
     enable32Bit = true;
 
