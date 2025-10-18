@@ -1,0 +1,372 @@
+<!--
+  ******************************************************************************
+  *                              IMPORTANT NOTICE                              *
+  ******************************************************************************
+  *                                                                            *
+  *  DO NOT BLINDLY COPY AND PASTE THIS CONFIGURATION.                         *
+  *                                                                            *
+  *  This XML configuration is provided as a template and should be carefully  *
+  *  reviewed and adjusted to match your specific system requirements.         *
+  *                                                                            *
+  *  Always work section by section, ensuring that each parameter is           *
+  *  appropriate for your environment. Blindly copying and pasting may lead    *
+  *  to misconfigurations, security vulnerabilities, or system instability.    *
+  *                                                                            *
+  *  Take the time to understand each setting and modify it as needed.         *
+  *                                                                            *
+  ******************************************************************************
+-->
+
+<domain xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0" type="kvm"> <!-- Don't forget XMLNS! -->
+  <uuid>30313293-3a7f-4753-8f1d-36a356dfc6e0</uuid>
+
+  <memory unit="G">8</memory>  <!-- keep RAM amount at realistic values: 64, 32, 16, 12, and 8 GiB are all common -->
+  <currentMemory unit="G">8</currentMemory>
+
+
+
+
+  <!-- Secure Boot Setup
+  
+  <> https://libvirt.org/formatdomain.html#operating-system-booting
+  
+  -->
+  <os>
+    <type arch="x86_64" machine="pc-q35-10.0">hvm</type>
+    <bootmenu enable="yes"/>
+    <smbios mode="host"/> <!-- Remove this if you use a host SMBIOS dump -->
+  </os>
+
+
+
+
+  <!-- 
+  <> https://libvirt.org/formatdomain.html#hypervisor-features
+
+
+ 
+  -->
+  <features>
+    <acpi/>
+    <apic/>
+    <!-- Disable all enlightenments if Hyper-V method is NOT used.
+    Enlightenments on "bare-metal" are flagged / extremely suspicious! -->
+    <hyperv mode="custom">
+      <relaxed state="off"/>
+      <vapic state="off"/>
+      <spinlocks state="off"/>
+      <vpindex state="off"/>
+      <runtime state="off"/>
+      <synic state="off"/>
+      <stimer state="off"/>
+      <reset state="off"/>
+      <vendor_id state="on" value="AuthenticAMD"/> <!-- KVM patch NOT present | Apply to fix NVIDIA (Code 43) error -->
+      <vendor_id state="off"/>                     <!-- KVM patch IS present -->
+      <frequencies state="off"/>
+      <reenlightenment state="off"/>
+      <tlbflush state="off"/>
+      <ipi state="off"/>
+      <evmcs state="off"/>
+      <avic state="off"/>
+      <emsr_bitmap state="off"/>
+      <xmm_input state="off"/>
+    </hyperv>
+    <kvm>
+      <hidden state="on"/> <!-- Hide the KVM hypervisor from standard MSR based discovery (CPUID Bitset) -->
+    </kvm>
+    <pmu state="off"/>
+    <vmport state="off"/> <!-- Disables the emulation of VMware IO port, for vmmouse etc. ACE AC "virtual machine prompt" will appear if not disabled -->
+    <smm state="on"/>
+    <ioapic driver="kvm"/>
+    <msrs unknown="fault"/>
+  </features>
+
+
+  <!--
+  <> https://libvirt.org/formatdomain.html#cpu-model-and-topology
+
+  If you're trying to bypass the AMD CPU thread count check, then you need to set CPU mode
+  to hypervisor default, so it uses the default one specified in the QEMU patch under the
+  "hw/i386/pc_q35.c" file patch. Change the "m->desc" string to whatever CPU that has a
+  core/thread count that can be used within your hosts CPU ability.
+  
+  -->
+  <cpu mode="host-passthrough" check="none" migratable="on">
+    <topology sockets="1" dies="1" cores="8" threads="2"/>
+    <!-- Optimize performance -->
+    <cache mode="passthrough"/>
+    <feature policy="require" name="svm"/>
+    <feature policy="require" name="topoext"/>
+    <feature policy="require" name="invtsc"/>
+    <feature policy="disable" name="vmx-vnmi"/> <!-- NVIDIA (Code 43) error solution -->
+    <!-- Remove giveaways for HV -->
+    <feature policy="disable" name="hypervisor"/> <!-- 1. Makes Windows report "Virtualization: Enabled" instead of "Virtual machine: Yes" in Task Manager.
+                                                       2. Also makes Windows report L1-3 caches (right under "Virtualization: Enabled")
+                                                       3. When emulating Windows 11, set "options kvm ignore_msrs=1" in "/etc/modprobe.d/kvm.conf" -->
+    <feature policy="disable" name="ssbd"/>
+    <feature policy="disable" name="amd-ssbd"/>
+    <feature policy="disable" name="virt-ssbd"/>
+    <feature policy="disable" name="rdtscp"/> <!-- Remove RDTSCP if RDTSC kernel patch is utilized -->
+    <feature policy="disable" name="rdpid"/>
+    <!-- Enable CPU features if host-passthrough isn't used (...) -->
+  </cpu>
+
+
+
+  <!--
+  <> https://libvirt.org/formatdomain.html#time-keeping
+
+ 
+ 
+  -->
+  <clock offset="localtime">
+    <timer name="tsc" present="yes" tickpolicy="discard" mode="native"/>
+    <!-- HPET must exist for Vanguard to start (isn't even used by game) -->
+    <timer name="hpet" present="yes"/>
+    <timer name="rtc" present="no"/>
+    <timer name="pit" present="no"/>
+    <!-- obviously only present in VMs -->
+    <timer name="kvmclock" present="no"/>
+    <timer name="hypervclock" present="no"/>
+  </clock>
+
+
+
+
+  <!--
+  <> https://libvirt.org/formatdomain.html#power-management
+
+  Emulates power management features found on physical systems (Suspend-to-Memory and Suspend-to-Disk).
+
+  Suspend-to-Memory (suspend-to-mem): This feature simulates the ability for the
+  virtual machine to suspend (i.e., hibernate) to RAM, much like how a physical
+  machine can be put into a sleep state. When this option is enabled, the guest
+  operating system can perform a suspend-to-RAM operation, preserving the machine’s
+  state in memory and allowing for a quicker resume.
+
+  Suspend-to-Disk (suspend-to-disk): This feature simulates the ability for the VM
+  to hibernate to disk, similar to how a physical machine can enter hibernation
+  mode, saving the machine's current state (all running processes, memory contents)
+  to disk and shutting down. When resumed, the system restores to its exact previous state.
+  -->
+  <pm>
+    <suspend-to-mem enabled="yes"/>
+    <suspend-to-disk enabled="yes"/>
+  </pm>
+
+
+
+
+
+  <devices>
+    <!-- Points to patched QEMU emulator binary (modify path if needed!) -->
+    <emulator>/nix/store//bin/qemu-system-x86_64</emulator>
+    
+
+
+
+
+    <!--
+    <> https://libvirt.org/formatdomain.html#hard-drives-floppy-disks-cdroms
+
+    If you have a spare NVMe/SSD, use it so you can have better performance than VirtIO + stay hidden.
+    -->
+    <disk type="file" device="disk"> <!-- Use block devices (partitons) for better performance -->
+      <driver name="qemu" type="raw" cache="none" io="native" discard="unmap"/> <!-- use io="threads" in block mode -->
+      <source file="/var/lib/libvirt/images/win10.img"/>
+      <target dev="sda" bus="sata"/> <!-- Use SATA to avoid using the VirtIO driver -->
+                                     <!-- Switch to '<source dev="/dev/sdb"/>' for using a host SATA drive. -->
+     
+      <serial>CAC0_25CA_57AB_841F.</serial> <!-- Serial Number Formats by Manufacture:
+      Samsung: "XXXX_XXXX_XXXX_XXXX." - Characters: A-F 0-9
+      Sandisk: "XXXX_XXXX_XXXX_XXXX_XXXX_XXXX_XXXX_XXXX." - Characters: A-F 0-9 -->
+     
+      <boot order="1"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="0"/>
+    </disk>
+
+
+
+
+    <!--
+    <> https://libvirt.org/formatdomain.html#network-interfaces
+    -->
+    <interface type="network">
+      <mac address="52:54:00:c2:81:08"/> <!-- Set fully randomized MAC address every instance -->
+      <source network="default"/> <!-- DO NOT USE "VirtIO" -->
+    </interface>
+
+
+
+
+
+    <!--
+    https://libvirt.org/formatdomain.html#tpm-device
+
+    Software TPM requires the swtpm (and swtpm-tools on some distros) to work.
+
+    Arch     - https://archlinux.org/packages/extra/x86_64/swtpm/
+    Debian   - https://packages.debian.org/sid/swtpm
+    openSUSE - https://software.opensuse.org/package/swtpm
+    Fedora   - https://packages.fedoraproject.org/pkgs/swtpm/swtpm/
+
+    Note: If you're trying to bypass Valorant/League of Legends Vanguard Anti-Cheat, you must enable TPM
+    as these games require it to run properly. Vanguard specifically checks for the presence of a TPM
+    module to prevent cheating and secure the game environment.
+    -->
+    <tpm model="tpm-tis">
+      <backend type='emulator' version='2.0'/>
+    </tpm>
+
+
+
+
+
+    <!--
+    <> https://libvirt.org/formatdomain.html#memory-balloon-device
+
+    Disable memory ballooning to prevent detection of virtualized environment.
+    The memory balloon device is a giveaway of virtualization, as it allows the
+    hypervisor to dynamically adjust the guest's memory. Disabling it makes the
+    VM's memory allocation appear more similar to a bare-metal system.
+
+    -----
+   
+    The VirtIO memballoon device enables the host to dynamically reclaim memory
+    from your VM by growing the balloon inside the guest, reserving reclaimed
+    memory. Libvirt adds this device to guests by default.
+
+    However, this device causes major performance issues with VFIO passthrough
+    setups, and should be disabled.
+    -->
+    <memballoon model="none"/>
+
+
+
+
+    
+    <!--
+    <> https://libvirt.org/formatdomain.html#video-devices
+
+    Set the video model to "none" to prevent detection of a virtualized environment.
+    Virtualized video devices can be a giveaway of a hypervisor, especially if the vendor ID is not spoofed.
+    
+    Setting the video model to "none" ensures that no virtual video device is presented to the guest, which
+    can help avoid detection of the underlying hypervisor.
+    
+    Additionally, if you're using the Looking Glass shared-memory-device program, setting the video model to
+    "none" is necessary to ensure proper functionality, as Looking Glass relies on a direct framebuffer access method.
+    -->
+    <video>
+      <model type="none"/>
+    </video>
+
+
+
+
+    
+    <!--
+    <> https://libvirt.org/formatdomain.html#shared-memory-device
+    <> https://looking-glass.io/docs/B7/install/#ivshmem
+
+    +----------------------+------------------------+----------------------------+
+    | Resolution           | Standard Dynamic Range | High Dynamic Range (HDR) * |
+    +----------------------+------------------------+----------------------------+
+    | 1920x1080 (1080p)    | 32                     | 64                         |
+    | 1920x1200 (1200p)    | 32                     | 64                         |
+    | 2560x1440 (1440p)    | 64                     | 128                        |
+    | 3840x2160 (2160p/4K) | 128                    | 256                        |
+    +----------------------+------------------------+----------------------------+
+    -->
+    <shmem name="looking-glass">
+      <model type="ivshmem-plain"/>
+      <size unit="M">32</size>
+    </shmem>
+  </devices>
+
+
+
+
+  <!--
+  <> https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-4
+  <> https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.2.0.pdf
+
+ 
+  -->
+  <qemu:commandline>
+
+    <!-- Spoofs ACPI table data (Battery) -->
+    <qemu:arg value="-acpitable"/>
+    <qemu:arg value="file=/home/{USERNAME}/fake_battery.aml"/>
+   
+    <!-- Spoofs the entire SMBIOS using a host dump -->
+    <qemu:arg value="-smbios"/>
+    <qemu:arg value="file=/home/{USERNAME}/smbios.bin"/>
+   
+    <!-- Spoofs the SMBIOS DMI Type 1, 2, 3, 4 and 17 HWIDs
+    Type 0 (BIOS / Firmware) <> https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.2.0.pdf#%5B%7B%22num%22%3A74%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C70%2C260%2C0%5D
+    Type 1 (System Information) <> https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.2.0.pdf#%5B%7B%22num%22%3A85%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C70%2C212%2C0%5D
+    Type 2 (Baseboard / Motherboard) <> https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.2.0.pdf#%5B%7B%22num%22%3A91%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C70%2C206%2C0%5D
+    Type 3 (Chassis / Computer Case) <> https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.2.0.pdf#%5B%7B%22num%22%3A99%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C70%2C178%2C0%5D
+    Type 4 (Processor / CPU) <> https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.2.0.pdf#%5B%7B%22num%22%3A114%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C70%2C583%2C0%5D
+    Type 17 (Memory / RAM) <> https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.2.0.pdf#%5B%7B%22num%22%3A258%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C70%2C597%2C0%5D
+    -->
+    <qemu:arg value="-smbios"/>
+    <qemu:arg value="type=0,version=XXXXXXX,date=XX/XX/XXXX,uefi=true"/> <!-- Explicitly marks the BIOS as UEFI-compliant -->
+    <qemu:arg value="-smbios"/>
+    <qemu:arg value="type=1,serial=To be filled by O.E.M.,uuid=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"/>  <!-- UUID Spoofer; You can spoof this UUID to any UUID -->
+    <qemu:arg value="-smbios"/>
+    <qemu:arg value="type=2,serial=To be filled by O.E.M."/>
+    <qemu:arg value="-smbios"/>
+    <qemu:arg value="type=3,serial=To be filled by O.E.M."/>
+    <qemu:arg value="-smbios"/>
+    <qemu:arg value="type=4,sock_pfx={Your socket designation},manufacturer=Advanced Micro Devices,, Inc.,version={Your CPU model name},max-speed={X},current-speed={X}"/>
+    <qemu:arg value="-smbios"/>
+    <qemu:arg value="type=17,loc_pfx=Controller0-ChannelA-DIMM0,bank=BANK 0,manufacturer=Samsung,serial=Unknown,asset=Not Specified,part=Not Specified,speed=4800"/>
+
+    <!-- IVSHMEM with the KVMFR module
+    The kernel module implements a basic interface to the IVSHMEM device for Looking Glass allowing DMA GPU transfers.
+    -->
+    <qemu:arg value="-device"/>
+    <qemu:arg value="{'driver':'ivshmem-plain','id':'shmem0','memdev':'looking-glass'}"/>
+    <qemu:arg value="-object"/>
+    <qemu:arg value="{'qom-type':'memory-backend-file','id':'looking-glass','mem-path':'/dev/kvmfr0','size':33554432,'share':true}"/>
+   
+  </qemu:commandline>
+
+
+
+
+
+  <!--
+  <> https://libvirt.org/formatdomain.html#hard-drives-floppy-disks-cdroms
+  <> https://libvirt.org/drvqemu.html#overriding-properties-of-qemu-devices
+
+  TL;DR - Only use this if your host is SSD-backed and you're using virtual storage (Ex. .qcow) for guest.
+ 
+  Use override for SATA device properties to optimize discard handling and rotation settings for SSD-backed qcow virtual storage.
+  This configuration allows you to specify advanced disk properties that help optimize performance for SSD-backed virtual disks,
+  particularly with regard to discard operations and rotation rate. The properties below control specific QEMU disk device features:
+
+  - `rotation_rate`: Sets the rotation rate of the virtual disk. A value of `1` indicates that the disk is an
+                     SSD (solid-state drive), optimizing I/O behavior for non-rotational storage.
+
+  - `discard_granularity`: Controls the granularity of discard operations. Setting this value to `0` can optimize how the
+                           guest OS handles the discard requests, affecting the performance of SSD-backed virtual disks.
+
+  This setup is recommended for systems using SSD-backed virtual storage in qcow format, as it improves compatibility and
+  performance when using discard operations and better reflects the behavior of SSD storage.
+  -->
+  <qemu:override>
+    <qemu:device alias="sata0-0-0">
+      <qemu:frontend>
+        <qemu:property name="rotation_rate" type="unsigned" value="1"/>
+        <qemu:property name="discard_granularity" type="unsigned" value="0"/>
+      </qemu:frontend>
+    </qemu:device>
+  </qemu:override>
+</domain>
+
+
+
+
