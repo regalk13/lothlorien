@@ -44,8 +44,8 @@ index 22d2171..5d1dc2b 100644
  static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
 +static uint32_t colors[][3]                = {
 +	/*               fg          bg          border    */
-+	[SchemeNorm] = { 0xbbbbbbff, 0x222222ff, 0x444444ff },
-+	[SchemeSel]  = { 0xeeeeeeff, 0x005577ff, 0x005577ff },
++	[SchemeNorm] = { 0xebdbb2ff, 0x181716ff, 0x282828ff },
++	[SchemeSel]  = { 0xfbf1c7ff, 0x3c3836ff, 0x3c3836ff },
 +	[SchemeUrg]  = { 0,          0,          0x770000ff },
 +};
  
@@ -1242,4 +1242,3 @@ index a2711f6..ece537a 100644
  void
 -- 
 2.46.0
-
