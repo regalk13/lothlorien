@@ -4,7 +4,7 @@
     (_self: super: {
       dwl =
         (super.dwl.override {
-        #  configH = ./dwl-config.h;
+          #  configH = ./dwl-config.h;
         }).overrideAttrs
           (oldAttrs: rec {
             src = inputs.dwl-source;
@@ -18,9 +18,9 @@
               pkgs.wlroots
             ];
             patches = [
-            #  ./patches/bar.patch
-            #  ./patches/swallow.patch
-            #  ./patches/config.patch
+              #  ./patches/bar.patch
+              #  ./patches/swallow.patch
+              #  ./patches/config.patch
             ];
           });
     })
