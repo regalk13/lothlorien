@@ -1,12 +1,10 @@
-{ pkgs, config, lib, ... }:
-let
-  kernelPatches = {
-    svm = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/Scrut1ny/Hypervisor-Phantom/refs/heads/main/Hypervisor-Phantom/patches/Kernel/linux-6.13-svm.patch";
-      hash = "sha256-zz18xerutulLGzlHhnu26WCY8rVQXApyeoDtCjbejIk=";
-    };
-  };
-in {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
   # Disabled - current patches mess up CPU frequency, purely visual though
   # boot.kernelPatches = [

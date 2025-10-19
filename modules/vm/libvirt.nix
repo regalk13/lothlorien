@@ -1,18 +1,8 @@
 {
   pkgs,
-  inputs,
-  config,
-  lib,
   ...
 }:
-let
-  secureBootOVMF = pkgs.OVMF.override {
-    secureBoot = true;
-    # msVarsTemplate = true;
-    tpmSupport = true;
-    tlsSupport = true;
-  };
-in {
+{
   imports = [
     ./qemu
   ];
@@ -21,21 +11,27 @@ in {
   networking.interfaces.br0.useDHCP = true;
   networking.bridges = {
     "br0" = {
-      interfaces = ["eth0"];
+      interfaces = [ "eth0" ];
     };
   };
 
   security.sudo.extraRules = [
     {
-      groups = ["libvirtd"];
+      groups = [ "libvirtd" ];
       commands = [
         {
           command = "/run/current-system/sw/bin/ddcutil -d 2 setvcp 60 0x0f";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
         {
           command = "/run/current-system/sw/bin/ddcutil -d 2 setvcp 60 0x11";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
       ];
     }
@@ -51,9 +47,18 @@ in {
     '';
   };
 
-  users.groups.libvirt.members = ["root" "regalk"];
-  users.groups.libvirtd.members = ["root" "regalk"];
-  users.groups.kvm.members = ["root" "regalk"];
+  users.groups.libvirt.members = [
+    "root"
+    "regalk"
+  ];
+  users.groups.libvirtd.members = [
+    "root"
+    "regalk"
+  ];
+  users.groups.kvm.members = [
+    "root"
+    "regalk"
+  ];
 
   environment.systemPackages = with pkgs; [
     python313Packages.virt-firmware

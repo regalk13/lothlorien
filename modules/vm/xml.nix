@@ -1,18 +1,16 @@
-{ inputs, pkgs, config, lib, ... }:
+{ inputs, ... }:
 
 let
   makeUnitCount = unit: count: { inherit unit count; };
   makeVcpupin = vcpu: cpuset: { inherit vcpu cpuset; };
-  makeNameValue = name: value: { inherit name value; };
   makeFeature = policy: name: { inherit policy name; };
-  makeValue = value: { inherit value; };
   makeController = type: index: model: {
     inherit type index model;
   };
   makeControllerAddr = type: index: address: {
     inherit type index address;
   };
-  
+
   win11 = {
     type = "kvm";
     name = "win11-111";
@@ -26,17 +24,22 @@ let
     vcpu.placement = "static";
     vcpu.count = 8;
 
-    cputune.emulatorpin = { cpuset = "0-1,10-11"; };
-    cputune.iothreadpin = { iothread = 1; cpuset = "0-1,10-11"; };
+    cputune.emulatorpin = {
+      cpuset = "0-1,10-11";
+    };
+    cputune.iothreadpin = {
+      iothread = 1;
+      cpuset = "0-1,10-11";
+    };
     cputune.vcpupin = [
-        (makeVcpupin 0 "2") # Pin vCPU 0 to Host Thread 2
-        (makeVcpupin 1 "3") # Pin vCPU 1 to Host Thread 3
-        (makeVcpupin 2 "4") # Pin vCPU 2 to Host Thread 4
-        (makeVcpupin 3 "5") # Pin vCPU 3 to Host Thread 5
-        (makeVcpupin 4 "6") # Pin vCPU 4 to Host Thread 6
-        (makeVcpupin 5 "7") # Pin vCPU 5 to Host Thread 7
-        (makeVcpupin 6 "8") # Pin vCPU 6 to Host Thread 8
-        (makeVcpupin 7 "9") # Pin vCPU 7 to Host Thread 9
+      (makeVcpupin 0 "2") # Pin vCPU 0 to Host Thread 2
+      (makeVcpupin 1 "3") # Pin vCPU 1 to Host Thread 3
+      (makeVcpupin 2 "4") # Pin vCPU 2 to Host Thread 4
+      (makeVcpupin 3 "5") # Pin vCPU 3 to Host Thread 5
+      (makeVcpupin 4 "6") # Pin vCPU 4 to Host Thread 6
+      (makeVcpupin 5 "7") # Pin vCPU 5 to Host Thread 7
+      (makeVcpupin 6 "8") # Pin vCPU 6 to Host Thread 8
+      (makeVcpupin 7 "9") # Pin vCPU 7 to Host Thread 9
     ];
 
     os = {
@@ -88,7 +91,12 @@ let
       mode = "host-passthrough";
       check = "none";
       migratable = false;
-      topology = { sockets = 1; dies = 1; cores = 4; threads = 2; }; # Total 12 vCPUs (0-11)
+      topology = {
+        sockets = 1;
+        dies = 1;
+        cores = 4;
+        threads = 2;
+      }; # Total 12 vCPUs (0-11)
 
       cache.mode = "passthrough";
 
@@ -106,15 +114,35 @@ let
     clock = {
       offset = "timezone";
       timezone = "Europe/London";
-    
-      timer = [
-        { name = "hpet"; present = false; }
-        { name = "rtc"; present = false; tickpolicy = "catchup"; }
-        { name = "pit"; tickpolicy = "discard"; }
-        { name = "tsc"; present = true; mode = "native"; }
 
-        { name = "kvmclock"; present = false; }
-        { name = "hypervclock"; present = true; }
+      timer = [
+        {
+          name = "hpet";
+          present = false;
+        }
+        {
+          name = "rtc";
+          present = false;
+          tickpolicy = "catchup";
+        }
+        {
+          name = "pit";
+          tickpolicy = "discard";
+        }
+        {
+          name = "tsc";
+          present = true;
+          mode = "native";
+        }
+
+        {
+          name = "kvmclock";
+          present = false;
+        }
+        {
+          name = "hypervclock";
+          present = true;
+        }
       ];
     };
 
@@ -168,7 +196,7 @@ let
           type = "bridge";
           mac.address = "52:54:00:20:c8:5d";
           source.bridge = "br0";
-          model.type = "e1000e"; 
+          model.type = "e1000e";
           link.state = "up";
           address = {
             type = "pci";
@@ -232,8 +260,20 @@ let
         (makeController "pci" 0 "pcie-root")
         (makeController "pci" 1 "pcie-root-port")
         (makeController "pci" 16 "pcie-to-pci-bridge")
-        (makeControllerAddr "sata" 0 { type = "pci"; domain = 0; bus = 0; slot = 31; function = 2; })
-        (makeControllerAddr "virtio-serial" 0 { type = "pci"; domain = 0; bus = 3; slot = 0; function = 0; })
+        (makeControllerAddr "sata" 0 {
+          type = "pci";
+          domain = 0;
+          bus = 0;
+          slot = 31;
+          function = 2;
+        })
+        (makeControllerAddr "virtio-serial" 0 {
+          type = "pci";
+          domain = 0;
+          bus = 3;
+          slot = 0;
+          function = 0;
+        })
       ];
 
       hostdev = [
@@ -275,7 +315,7 @@ let
         }
       ];
     };
-    
+
     qemu-override.device = {
       alias = "sata0-0-0";
       frontend.property = [
@@ -292,7 +332,8 @@ let
       ];
     };
   };
-in {
+in
+{
   imports = [
     inputs.nixvirt.nixosModules.default
   ];
