@@ -1,4 +1,4 @@
-if [[ -z "$LOG_PATH" || -z "$LOG_FILE" ]]; then
+if [[ -z $LOG_PATH || -z $LOG_FILE ]]; then
 
   readonly LOG_PATH="$(pwd)/logs"
   export LOG_PATH
@@ -7,7 +7,7 @@ if [[ -z "$LOG_PATH" || -z "$LOG_FILE" ]]; then
   export LOG_FILE
 
   # makes sure the log file is created successfully
-  if ! ( mkdir -p "$LOG_PATH" && touch "$LOG_FILE" ); then
+  if ! (mkdir -p "$LOG_PATH" && touch "$LOG_FILE"); then
     exit 1
   fi
 
@@ -39,23 +39,39 @@ declare -xr REVERSE="\033[7m"
 declare -xr HIDDEN="\033[8m"
 declare -xr STRIKE="\033[9m"
 # text colors
-declare -xr TEXT_BLACK="\033[30m"; declare -xr TEXT_GRAY="\033[90m"
-declare -xr TEXT_RED="\033[31m"; declare -xr TEXT_BRIGHT_RED="\033[91m"
-declare -xr TEXT_GREEN="\033[32m"; declare -xr TEXT_BRIGHT_GREEN="\033[92m"
-declare -xr TEXT_YELLOW="\033[33m"; declare -xr TEXT_BRIGHT_YELLOW="\033[93m"
-declare -xr TEXT_BLUE="\033[34m"; declare -xr TEXT_BRIGHT_BLUE="\033[94m"
-declare -xr TEXT_MAGENTA="\033[35m"; declare -xr TEXT_BRIGHT_MAGENTA="\033[95m"
-declare -xr TEXT_CYAN="\033[36m"; declare -xr TEXT_BRIGHT_CYAN="\033[96m"
-declare -xr TEXT_WHITE="\033[37m"; declare -xr TEXT_BRIGHT_WHITE="\033[97m"
+declare -xr TEXT_BLACK="\033[30m"
+declare -xr TEXT_GRAY="\033[90m"
+declare -xr TEXT_RED="\033[31m"
+declare -xr TEXT_BRIGHT_RED="\033[91m"
+declare -xr TEXT_GREEN="\033[32m"
+declare -xr TEXT_BRIGHT_GREEN="\033[92m"
+declare -xr TEXT_YELLOW="\033[33m"
+declare -xr TEXT_BRIGHT_YELLOW="\033[93m"
+declare -xr TEXT_BLUE="\033[34m"
+declare -xr TEXT_BRIGHT_BLUE="\033[94m"
+declare -xr TEXT_MAGENTA="\033[35m"
+declare -xr TEXT_BRIGHT_MAGENTA="\033[95m"
+declare -xr TEXT_CYAN="\033[36m"
+declare -xr TEXT_BRIGHT_CYAN="\033[96m"
+declare -xr TEXT_WHITE="\033[37m"
+declare -xr TEXT_BRIGHT_WHITE="\033[97m"
 # background colors
-declare -xr BACK_BLACK="\033[40m"; declare -xr BACK_GRAY="\033[100m"
-declare -xr BACK_RED="\033[41m"; declare -xr BACK_BRIGHT_RED="\033[101m"
-declare -xr BACK_GREEN="\033[42m"; declare -xr BACK_BRIGHT_GREEN="\033[102m"
-declare -xr BACK_YELLOW="\033[43m"; declare -xr BACK_BRIGHT_YELLOW="\033[103m"
-declare -xr BACK_BLUE="\033[44m"; declare -xr BACK_BRIGHT_BLUE="\033[104m"
-declare -xr BACK_MAGENTA="\033[45m"; declare -xr BACK_BRIGHT_MAGENTA="\033[105m"
-declare -xr BACK_CYAN="\033[46m"; declare -xr BACK_BRIGHT_CYAN="\033[106m"
-declare -xr BACK_WHITE="\033[47m"; declare -xr BACK_BRIGHT_WHITE="\033[107m"
+declare -xr BACK_BLACK="\033[40m"
+declare -xr BACK_GRAY="\033[100m"
+declare -xr BACK_RED="\033[41m"
+declare -xr BACK_BRIGHT_RED="\033[101m"
+declare -xr BACK_GREEN="\033[42m"
+declare -xr BACK_BRIGHT_GREEN="\033[102m"
+declare -xr BACK_YELLOW="\033[43m"
+declare -xr BACK_BRIGHT_YELLOW="\033[103m"
+declare -xr BACK_BLUE="\033[44m"
+declare -xr BACK_BRIGHT_BLUE="\033[104m"
+declare -xr BACK_MAGENTA="\033[45m"
+declare -xr BACK_BRIGHT_MAGENTA="\033[105m"
+declare -xr BACK_CYAN="\033[46m"
+declare -xr BACK_BRIGHT_CYAN="\033[106m"
+declare -xr BACK_WHITE="\033[47m"
+declare -xr BACK_BRIGHT_WHITE="\033[107m"
 
 ###############################################################
 # Formats a part of the provided string using ANSI escape codes
@@ -156,7 +172,7 @@ function fmtr::error() {
   local message="$(fmtr::format_text \
     '\n  ' "[-]" " ${text}" "$TEXT_BRIGHT_RED")"
   echo "$message" >&2
-  echo "$message" &>> "$LOG_FILE"
+  echo "$message" &>>"$LOG_FILE"
 }
 
 ##############################################################
@@ -174,7 +190,7 @@ function fmtr::fatal() {
   local message="$(fmtr::format_text \
     '\n  ' "[X] ${text}" '' "$TEXT_RED" "$BOLD")"
   echo "$message" >&2
-  echo "$message" &>> "$LOG_FILE"
+  echo "$message" &>>"$LOG_FILE"
 }
 
 #################################################
@@ -206,7 +222,10 @@ spoof_serial_numbers() {
   get_random_serial() { head /dev/urandom | tr -dc 'A-Z0-9' | head -c "$1"; }
 
   local patterns=("STRING_SERIALNUMBER" "STR_SERIALNUMBER" "STR_SERIAL_MOUSE" "STR_SERIAL_TABLET" "STR_SERIAL_KEYBOARD" "STR_SERIAL_COMPAT")
-  local regex_pattern="($(IFS=\|; echo "${patterns[*]}"))"
+  local regex_pattern="($(
+    IFS=\|
+    echo "${patterns[*]}"
+  ))"
 
   find "$(pwd)/hw/usb" -type f -exec grep -lE "\[$regex_pattern\]" {} + | while read -r file; do
     tmpfile=$(mktemp)
@@ -216,13 +235,12 @@ spoof_serial_numbers() {
         local new_serial="$(get_random_serial 10)"
         line=$(echo "$line" | sed -E "s/(\[$regex_pattern\] *= *\")[^\"]*/\1${new_serial}/")
       fi
-      echo "$line" >> "$tmpfile"
-    done < "$file"
+      echo "$line" >>"$tmpfile"
+    done <"$file"
 
     mv "$tmpfile" "$file"
   done
 }
-
 
 spoof_drive_serial_number() {
   local core_file="hw/ide/core.c"
@@ -310,16 +328,16 @@ spoof_acpi_table_data() {
     'LGE   ' 'ICL     '
   )
 
-  if [[ "$CPU_VENDOR" == "amd" ]]; then
+  if [[ $CPU_VENDOR == "amd" ]]; then
     oem_pairs+=('ALASKA' 'A M I ')
-  elif [[ "$CPU_VENDOR" == "intel" ]]; then
+  elif [[ $CPU_VENDOR == "intel" ]]; then
     oem_pairs+=('INTEL ' 'U Rvp   ')
   fi
 
-  local total_pairs=$(( ${#oem_pairs[@]} / 2 ))
-  local random_index=$(( RANDOM % total_pairs * 2 ))
+  local total_pairs=$((${#oem_pairs[@]} / 2))
+  local random_index=$((RANDOM % total_pairs * 2))
   local appname6=${oem_pairs[$random_index]}
-  local appname8=${oem_pairs[$random_index + 1]}
+  local appname8=${oem_pairs[random_index + 1]}
   local h_file="include/hw/acpi/aml-build.h"
 
   sed -i "$h_file" -e "s/^#define ACPI_BUILD_APPNAME6 \".*\"/#define ACPI_BUILD_APPNAME6 \"${appname6}\"/"
@@ -337,7 +355,7 @@ spoof_acpi_table_data() {
   local c_file="hw/acpi/aml-build.c"
   local pm_type="1" # Desktop
 
-  if [[ "$chassis_type" = "Notebook" ]]; then
+  if [[ $chassis_type == "Notebook" ]]; then
     pm_type="2" # Notebook/Laptop/Mobile
   fi
 
