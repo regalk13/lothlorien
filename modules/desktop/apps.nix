@@ -48,8 +48,8 @@ in
         libreoffice-qt6
         gparted
         nwg-look
-        # qemu
-        # quickemu
+        qemu
+        quickemu
       ]
       ++ config.desktop.apps.extraPackages;
 

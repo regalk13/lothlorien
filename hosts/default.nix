@@ -28,7 +28,7 @@ in
         ../modules/graphical/dwl
         ../modules/server/services/mpd.nix
         ../modules/editors/nvim
-        ../modules/vm
+        # ../modules/vm
       ];
     };
     osto-lomi = mkHost {
