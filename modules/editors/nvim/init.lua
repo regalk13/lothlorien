@@ -1,5 +1,4 @@
 vim.opt.guicursor = ""
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
@@ -19,6 +18,7 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.o.winborder = "rounded"
+vim.o.swapfile = false
 
 vim.keymap.set("n", "<leader>o", ":update<CR> :source<CR>")
 vim.keymap.set("n", "<leader>w", ":write<CR>")
