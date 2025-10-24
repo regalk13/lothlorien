@@ -50,6 +50,11 @@ in
         nwg-look
         qemu
         quickemu
+        (xiphos.overrideAttrs (oldAttrs: {
+  cmakeFlags = oldAttrs.cmakeFlags ++ [
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ];
+}))
       ]
       ++ config.desktop.apps.extraPackages;
 
