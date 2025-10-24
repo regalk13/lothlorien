@@ -15,6 +15,7 @@ in
         # ../modules/graphical/hyprland.nix
         ../modules/cli/tools.nix
         ../modules/core
+        ../modules/desktop/override/biblesync.nix
         ../modules/core/locale.nix
         ../modules/desktop/apps.nix
         ../modules/desktop/fonts.nix
