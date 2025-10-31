@@ -19,7 +19,7 @@ in
         ../modules/core/locale.nix
         ../modules/desktop/apps.nix
         ../modules/desktop/fonts.nix
-        ../modules/desktop/digital-logic-sim.nix
+        # ../modules/desktop/digital-logic-sim.nix
         ../modules/networking/firewall.nix
         ../modules/networking/ssh.nix
         ../modules/hardware/audio.nix
