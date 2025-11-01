@@ -5,7 +5,6 @@
 {
   home.packages = with pkgs; [
     pavucontrol
-    playerctl
     pulsemixer
     imv
   ];
@@ -19,11 +18,6 @@
 
     obs-studio = {
       enable = true;
-      plugins = [ pkgs.obs-studio-plugins.droidcam-obs ];
     };
-  };
-
-  services = {
-    playerctld.enable = true;
   };
 }
