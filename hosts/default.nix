@@ -26,7 +26,8 @@ in
         ../modules/hardware/sensors.nix
         ../modules/fcitx5/default.nix
         ../modules/desktop/games
-        ../modules/graphical/dwl
+        #../modules/graphical/dwl
+        ../modules/graphical/niri
         ../modules/server/services/mpd.nix
         ../modules/editors/nvim
         # ../modules/vm
