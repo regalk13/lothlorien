@@ -44,6 +44,7 @@ in
         nh
         sysstat
         nixd
+        alacritty
       ]
       ++ config.cli.tools.extraPackages;
   };
