@@ -9,13 +9,13 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
-  
+
   environment.systemPackages = with pkgs; [
     grim
     slurp
     wl-clipboard
     xwayland-satellite
-    nautilus  
+    nautilus
   ];
 
   xdg.portal = {
@@ -26,7 +26,10 @@
     ];
     config = {
       niri = {
-        default = [ "gnome" "gtk" ];
+        default = [
+          "gnome"
+          "gtk"
+        ];
         "org.freedesktop.impl.portal.Screencast" = [ "gnome" ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };

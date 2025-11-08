@@ -1,5 +1,4 @@
-_:
-{
+_: {
   nixpkgs.overlays = [
     (_self: super: {
       biblesync =
