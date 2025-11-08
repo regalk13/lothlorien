@@ -28,7 +28,7 @@ in
         ../modules/desktop/games
         #../modules/graphical/dwl
         ../modules/graphical/niri
-        ../modules/server/services/mpd.nix
+        #../modules/server/services/mpd.nix
         ../modules/editors/nvim
         # ../modules/vm
       ];
