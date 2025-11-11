@@ -4,6 +4,8 @@
   Lothlórien
 </h1>
 
+> The Git branch was recreated on November 11 to re-sign existing commits while preserving the project’s structure. git log still shows each commit’s original date.
+
 <h3 align="center" style="font-style: italic">
 Ash nixe durbatulûk
 </h3>
