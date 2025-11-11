@@ -7,5 +7,8 @@ _: {
         # {id = "";}  // extension id, query from chrome web store
       ];
     };
+    brave = {
+      enable = true;
+    };
   };
 }
