@@ -15,7 +15,7 @@ in
         # ../modules/graphical/hyprland.nix
         ../modules/cli/tools.nix
         ../modules/core
-        # ../modules/core/wireguard.nix
+        #../modules/core/wireguard.nix
         ../modules/desktop/override/biblesync.nix
         ../modules/core/locale.nix
         ../modules/desktop/apps.nix

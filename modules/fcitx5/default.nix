@@ -5,6 +5,7 @@
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
+      settings.addons.clipboard.globalSection.Enabled = "False";
       addons = with pkgs; [
         catppuccin-fcitx5
         (fcitx5-rime.override {
