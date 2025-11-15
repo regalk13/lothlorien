@@ -6,6 +6,7 @@
     ../../home/shell
     ./graphical/fcitx5
     ./graphical/fox
+    ./graphical/waybar
   ];
 
   programs.git = {

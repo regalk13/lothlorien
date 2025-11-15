@@ -8,7 +8,10 @@ _: {
       peers = [
         {
           publicKey = "0RKsm29oTNoiXqu6r6z1Crnx729jBtJSDNX1yya7aT0=";
-          allowedIPs = [ "10.8.71.1/32" "10.8.71.3/32" ];
+          allowedIPs = [
+            "10.8.71.1/32"
+            "10.8.71.3/32"
+          ];
           endpoint = "127.0.0.1:51821";
           persistentKeepalive = 25;
         }

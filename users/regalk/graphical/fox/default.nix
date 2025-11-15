@@ -22,7 +22,6 @@ _:
     };
 
     extensions.enableDefaultExtensions = true;
-
     security = {
       sanitizeOnShutdown.enable = false;
       sandbox.enable = true;
