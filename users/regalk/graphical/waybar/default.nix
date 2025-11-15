@@ -7,7 +7,7 @@
       layer = "top";
       exclusive = true;
       position = "top";
-      height = 30;
+      height = 20;
 
       margin-top = 0;
       margin-right = 0;
@@ -170,8 +170,8 @@
       margin-right: 4px;
       margin-top: 2px;
       margin-bottom: 2px;
-      padding-top: 8px;
-      padding-bottom: 8px;
+      padding-top: 2px;
+      padding-bottom: 2px;
       border: 1px solid #4a5353;
       box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
       }
