@@ -17,9 +17,9 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    digital-logic-sim = {
-      url = "github:regalk13/digital-logic-sim-flake";
-    };
+    # digital-logic-sim = {
+    #  url = "github:regalk13/digital-logic-sim-flake";
+    # };
 
     disko = {
       url = "github:nix-community/disko";
@@ -36,10 +36,10 @@
       flake = false;
     };
 
-    nixvirt = {
-      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/0.6.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixvirt = {
+    #  url = "https://flakehub.com/f/AshleyYakeley/NixVirt/0.6.0";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs =
