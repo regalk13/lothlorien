@@ -30,7 +30,7 @@
     };
 
     schizofox = {
-      url = "github:regalk13/schizofox";
+      url = "github:schizofox/schizofox";
     };
 
     dwl-source = {
