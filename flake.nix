@@ -32,6 +32,7 @@
     schizofox = {
       url = "github:regalk13/schizofox";
     };
+
     dwl-source = {
       url = "github:regalk13/dwl-fork";
       flake = false;
