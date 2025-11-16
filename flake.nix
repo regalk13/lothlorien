@@ -29,8 +29,9 @@
       url = "github:ryantm/agenix";
     };
 
-    schizofox.url = "github:regalk13/schizofox";
-
+    schizofox = { 
+      url = "github:regalk13/schizofox";
+    };
     dwl-source = {
       url = "github:regalk13/dwl-fork";
       flake = false;

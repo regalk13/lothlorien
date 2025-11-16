@@ -5,7 +5,6 @@
 
     settings.mainBar = {
       layer = "top";
-      exclusive = true;
       position = "top";
       height = 20;
 
