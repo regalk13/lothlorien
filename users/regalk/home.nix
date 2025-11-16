@@ -9,8 +9,10 @@
     ./graphical/waybar
   ];
 
-  programs.git = {
-    userName = "Regalk";
-    userEmail = "72028266+regalk13@users.noreply.github.com";
+  programs.git.settings = {
+    user = {
+      name = "Regalk";
+      email = "72028266+regalk13@users.noreply.github.com";
+    };
   };
 }

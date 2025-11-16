@@ -137,16 +137,16 @@
       };
 
       "custom/power" = {
-        format = "⏻";
+        format = "⏻ ";
         "on-click" = "nwgbar";
         tooltip = false;
       };
     };
     style = ''
-               * {
+      * {
           /* `otf-font-awesome` is required to be installed for icons */
-          font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-          font-size: 13px;
+          font-family: Iosevka Nerd Font, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+          font-size: 14px;
       }
 
       window#waybar {
@@ -164,54 +164,54 @@
       #memory,
       #network,
       #pulseaudio {
-      background-color: #b3b5b2;
-      margin-left: 4px;
-      margin-right: 4px;
-      margin-top: 2px;
-      margin-bottom: 2px;
-      padding-top: 2px;
-      padding-bottom: 2px;
-      border: 1px solid #4a5353;
-      box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
+        background-color: #b3b5b2;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 5px;
+        padding-right: 2px;
+        border: 1px solid #4a5353;
+        box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
       }
 
       #custom-firefox, #custom-anki, #battery, #network, #pulseaudio {
-      font-size: 16px;
+        font-size: 13px;
       }
 
-      #custom-power {
-      margin-top: 4px;
+      #clock {
+        color: #cccac2;
       }
 
       #battery {
-      margin-bottom: 4px;
+        margin-bottom: 4px;
       }
 
       #cpu {
-      border-bottom: none;
-      margin-bottom: -2px;
-      box-shadow: inset 2px 0px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
+        border-bottom: none;
+        box-shadow: inset 2px 0px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
       }
 
       #memory {
-      margin-top: -2px;
-      border-top: none;
-      box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 0px 0px 0px #e5dfd3;
+        border-top: none;
+        box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 0px 0px 0px #e5dfd3;
       }
 
       #pulseaudio.microphone {
-      border-bottom: none;
-      margin-top: 2px;
-      margin-bottom: -2px;
-      border: 1px solid #4a5353;
-      border-bottom: none;
-      box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
+        border-bottom: none;
+        margin-top: 2px;
+        margin-bottom: -2px;
+        border: 1px solid #4a5353;
+        border-bottom: none;
+        box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
       }
 
       #pulseaudio {
-      margin-top: -4px;
-      border-top: none;
-      box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 0px 0px 0px #e5dfd3;
+        margin-top: -4px;
+        border-top: none;
+        box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 0px 0px 0px #e5dfd3;
       }
     '';
   };
