@@ -8,6 +8,7 @@
     alejandra
     deadnix
     statix
+    jujutsu
   ];
 
   programs.direnv = {
