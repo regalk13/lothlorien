@@ -16,6 +16,7 @@
     wl-clipboard
     xwayland-satellite
     nautilus
+    rofi
   ];
 
   xdg.portal = {
