@@ -3,13 +3,14 @@
   services.mpd = {
     enable = true;
     musicDirectory = "/home/${username}/Music";
-    user = "${username}";
+    user = "mpd";
     extraConfig = ''
       audio_output {
           type "pipewire"
           name "My PipeWire Output"
       }
     '';
+    startWhenNeeded = true;
   };
 
   systemd = {
