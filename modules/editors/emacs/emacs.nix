@@ -38,7 +38,7 @@ let
       # (callPackage ./theme.nix { inherit colorScheme; })
       # modus-themes
       gruber-darker-theme
-      
+
       # Keybinds
       evil
       evil-collection

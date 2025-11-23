@@ -170,7 +170,7 @@
         padding-left: 5px;
         padding-right: 2px;
       }
-      
+
       #custom-power {
         margin-left: 5px;
         margin-right: 8px;
