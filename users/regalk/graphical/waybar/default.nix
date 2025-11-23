@@ -6,7 +6,7 @@
     settings.mainBar = {
       layer = "top";
       position = "top";
-      height = 20;
+      height = 15;
 
       margin-top = 0;
       margin-right = 0;
@@ -150,10 +150,8 @@
       }
 
       window#waybar {
-          background-color: #82949e;
-          color: #4a5353;
-          border: 2px solid #4a5353;
-          box-shadow: inset -2px 2px 0 0px #a1acae, inset 2px -2px 0px 0px #687677;
+          background-color: #181818;
+          color: #e4e4ef;
       }
 
       #custom-firefox,
@@ -164,25 +162,22 @@
       #memory,
       #network,
       #pulseaudio {
-        background-color: #b3b5b2;
-        margin-left: 4px;
-        margin-right: 4px;
-        margin-top: 2px;
-        margin-bottom: 2px;
+        background-color: #453d41;
+        margin-left: 2px;
+        margin-right: 2px;
         padding-top: 4px;
         padding-bottom: 4px;
         padding-left: 5px;
         padding-right: 2px;
-        border: 1px solid #4a5353;
-        box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
+      }
+      
+      #custom-power {
+        margin-left: 5px;
+        margin-right: 8px;
       }
 
       #custom-firefox, #custom-anki, #battery, #network, #pulseaudio {
         font-size: 13px;
-      }
-
-      #clock {
-        color: #cccac2;
       }
 
       #battery {
@@ -191,27 +186,22 @@
 
       #cpu {
         border-bottom: none;
-        box-shadow: inset 2px 0px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
       }
 
       #memory {
         border-top: none;
-        box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 0px 0px 0px #e5dfd3;
       }
 
       #pulseaudio.microphone {
         border-bottom: none;
         margin-top: 2px;
         margin-bottom: -2px;
-        border: 1px solid #4a5353;
         border-bottom: none;
-        box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 2px 0px 0px #e5dfd3;
       }
 
       #pulseaudio {
         margin-top: -4px;
         border-top: none;
-        box-shadow: inset 2px -2px 0px 0px #cccac2, inset -2px 0px 0px 0px #e5dfd3;
       }
     '';
   };

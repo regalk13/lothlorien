@@ -36,8 +36,9 @@ let
       all-the-icons
       doom-modeline
       # (callPackage ./theme.nix { inherit colorScheme; })
-      modus-themes
-
+      # modus-themes
+      gruber-darker-theme
+      
       # Keybinds
       evil
       evil-collection

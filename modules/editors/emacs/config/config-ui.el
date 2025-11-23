@@ -1,7 +1,7 @@
 ;; === Fonts ===
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 160)
-(set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd Font" :height 100)
-(set-face-attribute 'variable-pitch nil :font "DejaVu Sans" :height 120 :weight 'regular)
+(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 160)
+(set-face-attribute 'fixed-pitch nil :font "Iosevka Nerd Font" :height 100)
+(set-face-attribute 'variable-pitch nil :font "Iosevka Nerd Font" :height 120 :weight 'regular)
 
 ;; === Theme ===
 ;; (require 'base16-nix-colors-theme)
@@ -18,6 +18,6 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode +1)
 
-(load-theme 'modus-vivendi :no-confirm)
+(load-theme 'gruber-darker :no-confirm)
 
 (provide 'config-ui)
