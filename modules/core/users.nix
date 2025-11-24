@@ -14,5 +14,5 @@
   programs.nix-ld.enable = true;
   programs.zsh.enable = true;
   nix.settings.trusted-users = [ username ];
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.nushell;
 }

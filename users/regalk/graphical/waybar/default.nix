@@ -167,8 +167,8 @@
         margin-right: 2px;
         padding-top: 4px;
         padding-bottom: 4px;
-        padding-left: 5px;
-        padding-right: 2px;
+        padding-left: 10px;
+        padding-right: 10px;
       }
 
       #custom-power {
