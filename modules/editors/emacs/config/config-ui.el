@@ -18,6 +18,31 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode +1)
 
-(load-theme 'gruber-darker :no-confirm)
+
+(use-package ef-themes
+  :init
+  ;; (setq ef-bio-palette-overrides
+  ;;       '((bg-main "#131313")))
+  (setq ef-dream-palette-overrides
+        '((bg-main "#131015")
+          (bg-hl-line "#232224")
+          (fg-mode-line "#f2ddcf")
+          (bg-mode-line "#472b00")
+          (yellow-cooler "#ff9f0a")
+          ;; (bg-hl-line "#2e1a3a")
+          ;; (bg-hl-line "#352102")
+          ;; (bg-hl-line "#3b393e")
+          ;; (bg-mode-line "#5E4527")
+          ))
+
+  :config
+  (load-theme 'ef-dream t)
+  ;; (load-theme 'ef-winter)
+  ;; (load-theme 'ef-trio-dark)
+  ;; (load-theme 'ef-spring t)
+  ;; (load-theme 'ef-bio t)
+  )
+
+;; (load-theme 'gruber-darker :no-confirm)
 
 (provide 'config-ui)
