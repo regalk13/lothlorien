@@ -1,7 +1,7 @@
 ;; === Fonts ===
-(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 160)
-(set-face-attribute 'fixed-pitch nil :font "Iosevka Nerd Font" :height 100)
-(set-face-attribute 'variable-pitch nil :font "Iosevka Nerd Font" :height 120 :weight 'regular)
+(set-face-attribute 'default nil :font "Hack Nerd Font" :height 160)
+(set-face-attribute 'fixed-pitch nil :font "Hack Nerd Font" :height 100)
+(set-face-attribute 'variable-pitch nil :font "Hack Nerd Font" :height 120 :weight 'regular)
 
 ;; === Theme ===
 ;; (require 'base16-nix-colors-theme)
