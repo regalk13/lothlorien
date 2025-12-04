@@ -95,6 +95,8 @@ let
 
       elfeed
 
+      pdf-tools
+
       # treesitter
       tree-sitter
       tree-sitter-langs
