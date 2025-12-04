@@ -18,7 +18,6 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode +1)
 
-
 (use-package ef-themes
   :init
   ;; (setq ef-bio-palette-overrides
