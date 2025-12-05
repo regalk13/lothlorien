@@ -25,7 +25,7 @@ let
   ++ lib.optionals desktop [
 
     "${self}/users/${username}/nixos.nix"
-    "${self}/modules/editors/emacs/module.nix"
+    # "${self}/modules/editors/emacs/module.nix"
 
     home-manager.nixosModules.home-manager
     # inputs.stylix.nixosModules.stylix

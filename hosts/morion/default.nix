@@ -30,7 +30,7 @@
   #boot.loader.grub.device = "nodev";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  regalk.emacs.enable = true;
+  # regalk.emacs.enable = true;
 
   networking.hostName = "morion"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

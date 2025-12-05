@@ -94,7 +94,7 @@ let
       rime
 
       elfeed
-      
+
       # treesitter
       tree-sitter
       tree-sitter-langs

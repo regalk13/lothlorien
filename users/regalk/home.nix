@@ -4,6 +4,7 @@
     ../../home/core.nix
     ../../home/programs
     ../../home/shell
+    ../../home/doom-emacs
     ./graphical/fcitx5
     ./graphical/fox
     ./graphical/waybar
