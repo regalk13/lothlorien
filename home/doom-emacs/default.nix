@@ -1,10 +1,10 @@
 { pkgs, ... }:
 
-let 
-  emacspkg = ((pkgs.emacsPackagesFor pkgs.emacs-pgtk).emacsWithPackages (epkgs: [
+let
+  emacspkg = (pkgs.emacsPackagesFor pkgs.emacs-pgtk).emacsWithPackages (epkgs: [
       epkgs.vterm
       epkgs.treesit-grammars.with-all-grammars
-  ]));
+    ]);
 in
 {
   home.packages = with pkgs; [
