@@ -23,5 +23,5 @@
     options = lib.mkDefault "--delete-older-than 7d";
   };
 
-  nixpkgs.config.allowUnfree = false;
+  nixpkgs.config.allowUnfree = true;
 }

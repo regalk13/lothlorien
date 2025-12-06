@@ -4,7 +4,7 @@
   # programs.waybar.enable = true;
 
   services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
+  # services.displayManager.gdm.enable = true;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
