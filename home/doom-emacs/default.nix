@@ -2,13 +2,13 @@
 
 let
   emacspkg = (pkgs.emacsPackagesFor pkgs.emacs-pgtk).emacsWithPackages (epkgs: [
-      epkgs.vterm
-      epkgs.treesit-grammars.with-all-grammars
-    ]);
+    epkgs.vterm
+    epkgs.treesit-grammars.with-all-grammars
+  ]);
 in
 {
   home.sessionVariables = {
-    GDK_BACKEND = "wayland"; 
+    GDK_BACKEND = "wayland";
   };
   home.packages = with pkgs; [
     emacspkg
