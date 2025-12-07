@@ -7,6 +7,9 @@ let
     ]);
 in
 {
+  home.sessionVariables = {
+    GDK_BACKEND = "wayland"; 
+  };
   home.packages = with pkgs; [
     emacspkg
     git
