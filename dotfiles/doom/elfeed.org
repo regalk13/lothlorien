@@ -83,7 +83,7 @@
 **** [[https://embeddedartistry.com/feed/][Embedded Artistry]]
 **** [[https://porzechowski.github.io/blog/feed.xml][Phillip Orzechowski]]
 **** [[https://www.ganssle.com/blog/feed.rss][Jack Ganssle]]
-**** [[https://hackaday.com/blog/feed/][Hackaday]
+**** [[https://hackaday.com/blog/feed/][Hackaday]]
 
 *** Security :pentesting:
 **** [[https://128nops.blogspot.com/rss.xml][128nops]]
