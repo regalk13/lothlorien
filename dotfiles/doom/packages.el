@@ -52,3 +52,7 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
+
+(package! sqlite3)
+(unpin! org-roam)
+(package! org-roam-ui)

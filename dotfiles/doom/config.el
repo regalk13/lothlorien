@@ -80,3 +80,147 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; Org Roam setup
+(use-package! org-roam
+  :defer t
+  :commands (org-roam-node-find
+             org-roam-node-insert
+             org-roam-dailies-goto-today
+             org-roam-buffer-toggle
+             org-roam-db-sync
+             org-roam-capture)  ; Add this
+  :init
+  (setq org-roam-directory "~/org/roam"
+        org-roam-database-connector 'sqlite-builtin
+        org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)
+        org-roam-v2-ack t)
+
+  :config
+  ;; Don't sync on startup, only when explicitly needed
+  (setq org-roam-db-update-on-save nil)
+
+  ;; Create directory if needed
+  (unless (file-exists-p org-roam-directory)
+    (make-directory org-roam-directory t))
+
+  ;; Only enable autosync AFTER first use
+  (add-hook 'org-roam-find-file-hook
+            (lambda ()
+              (unless org-roam-db-autosync-mode
+                (org-roam-db-autosync-mode 1))))
+
+  ;; CAPTURE TEMPLATES - Human readable filenames
+  (setq org-roam-capture-templates
+        '(("d" "default" plain "%?"
+           :target (file+head "${slug}.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: ${title}\n#+filetags: \n\n")
+           :unnarrowed t)
+
+          ("c" "concept" plain "%?"
+           :target (file+head "concepts/${slug}.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: ${title}\n#+filetags: :concept:\n\n")
+           :unnarrowed t)
+
+          ("C" "Contact" plain
+          "* Contact Info
+:PROPERTIES:
+:EMAIL: %^{Email}
+:PHONE: %^{Phone}
+:BIRTHDAY: %^{Birthday (YYYY-MM-DD +1y)}t
+:LOCATION: %^{Location}
+:LAST_CONTACTED: %U
+:END:
+
+ ** Communications
+
+ ** Notes
+ %?"
+ :target (file+head "contacts/${slug}.org"
+ "#+title: ${title}
+ #+filetags: %^{Tags}
+ #+created: %U
+ ")
+ :unnarrowed t)
+
+
+          ("b" "book" plain "%?"
+           :target (file+head "books/${slug}.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: ${title}\n#+author: \n#+filetags: :book:\n\n* Summary\n\n* Key Ideas\n\n* Quotes\n\n* Related\n\n")
+           :unnarrowed t)
+
+          ("p" "person" plain "%?"
+           :target (file+head "people/${slug}.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: ${title}\n#+filetags: :person:\n\n* Background\n\n* Key Ideas\n\n* Works\n\n")
+           :unnarrowed t)
+
+          ("t" "tech" plain "%?"
+           :target (file+head "tech/${slug}.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: ${title}\n#+filetags: :tech:\n\n")
+           :unnarrowed t)
+
+          ("T" "theology" plain "%?"
+           :target (file+head "faith/theology/${slug}.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: ${title}\n#+filetags: :theology:faith:\n\n* Doctrine\n\n* Scripture\n\n* Tradition\n\n* Application\n\n")
+           :unnarrowed t)
+
+          ("w" "writing" plain "%?"
+           :target (file+head "writing/${slug}.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: ${title}\n#+filetags: :writing:draft:\n\n")
+           :unnarrowed t)
+
+          ("P" "project" plain "%?"
+           :target (file+head "projects/${slug}.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: ${title}\n#+filetags: :project:private:\n\n* Overview\n\n* Goals\n\n* Status\n\n* Notes\n\n")
+           :unnarrowed t)))
+
+  ;; DAILIES - Clean date format
+  (setq org-roam-dailies-directory "daily/"
+        org-roam-dailies-capture-templates
+        '(("d" "default" entry "* %<%H:%M>: %?"
+           :target (file+head "%<%Y-%m-%d>.org"
+                              ":PROPERTIES:\n:ID:       %(org-id-new)\n:END:\n#+title: %<%Y-%m-%d %A>\n#+filetags: :daily:\n\n"))))
+
+  ;; Enable completion everywhere (for linking)
+  (setq org-roam-completion-everywhere t))
+
+(defun my/elfeed-open-in-mpv ()
+  "Open the current Elfeed entry's link in MPV asynchronously."
+  (interactive)
+  (let ((entry (if (eq major-mode 'elfeed-show-mode)
+                   elfeed-show-entry
+                 (elfeed-search-selected :ignore-region))))
+    (when entry
+      (let ((link (elfeed-entry-link entry)))
+        (message "Sending to MPV: %s" link)
+        (start-process "mpv-process" nil "mpv" link)))))
+
+(make-directory "~/.elfeed" t)
+
+;; Set org feed file
+(setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
+
+;; Configure elfeed - consolidate all elfeed config in one after! block
+(after! elfeed
+  (setq elfeed-db-directory "~/.elfeed")
+  (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+
+  ;; Key bindings
+  (map! :map elfeed-search-mode-map
+        :n "d" #'elfeed-download-current-entry
+        :n "v" #'my/elfeed-open-in-mpv
+        :n "O" #'elfeed-search-browse-url))
+
+(run-at-time nil (* 60 60) #'elfeed-update)
+
+(use-package! elfeed-tube
+  :after elfeed
+  :config
+  (elfeed-tube-setup)
+  
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
