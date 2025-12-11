@@ -44,6 +44,31 @@
 (add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
 (load-theme 'compline t)
 
+(use-package! ef-themes
+  :init
+  ;; (setq ef-bio-palette-overrides
+  ;;       '((bg-main "#131313")))
+  (setq ef-dream-palette-overrides
+        '((bg-main "#131015")
+          (bg-hl-line "#232224")
+          (fg-mode-line "#f2ddcf")
+          (bg-mode-line "#472b00")
+          (yellow-cooler "#ff9f0a")
+          ;; (bg-hl-line "#2e1a3a")
+          ;; (bg-hl-line "#352102")
+          ;; (bg-hl-line "#3b393e")
+          ;; (bg-mode-line "#5E4527")
+          ))
+
+  :config
+  ;; (load-theme 'ef-dream t)
+  ;; (load-theme 'ef-winter)
+  ;; (load-theme 'ef-trio-dark)
+  ;; (load-theme 'ef-spring t)
+  ;; (load-theme 'ef-bio t)
+  )
+
+
 ;; Maintain terminal transparency in Doom Emacs
 (after! doom-themes
   (unless (display-graphic-p)
@@ -224,3 +249,5 @@
          :map elfeed-search-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)))
+
+(beacon-mode 1)

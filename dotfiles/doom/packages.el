@@ -56,3 +56,5 @@
 (package! sqlite3)
 (unpin! org-roam)
 (package! org-roam-ui)
+(package! beacon)
+(package! ef-themes)
