@@ -16,10 +16,23 @@ in
     wl-clipboard
     slstatus-custom
   ];
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config = {
+      common = {
+        default = [ "wlr" "gtk" ];
+      };
+    };
+  };
+
+  environment.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "wlroots"; 
+    XDG_SESSION_TYPE = "wayland";
   };
 
   hardware.graphics = {

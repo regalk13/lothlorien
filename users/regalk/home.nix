@@ -7,7 +7,7 @@
     ../../home/doom-emacs
     ./graphical/fcitx5
     ./graphical/fox
-    ./graphical/waybar
+    # ./graphical/waybar
   ];
 
   programs.git.settings = {
