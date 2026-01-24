@@ -25,13 +25,16 @@ in
     ];
     config = {
       common = {
-        default = [ "wlr" "gtk" ];
+        default = [
+          "wlr"
+          "gtk"
+        ];
       };
     };
   };
 
   environment.sessionVariables = {
-    XDG_CURRENT_DESKTOP = "wlroots"; 
+    XDG_CURRENT_DESKTOP = "wlroots";
     XDG_SESSION_TYPE = "wayland";
   };
 
