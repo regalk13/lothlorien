@@ -28,9 +28,10 @@ in
         ../modules/fcitx5/default.nix
         ../modules/desktop/games
         # ../modules/graphical/dwl
-        #../modules/graphical/niri
-        ../modules/graphical/kde
-        #../modules/server/services/mpd.nix
+        # ../modules/graphical/niri
+        # ../modules/graphical/kde
+        # ../modules/server/services/mpd.nix
+        ../modules/graphical/windowmaker
         ../modules/editors/nvim
         # ../modules/vm
       ];
