@@ -36,6 +36,7 @@ let
         extraSpecialArgs = { inherit inputs system username; };
         sharedModules = [
           inputs.schizofox.homeManagerModule
+          inputs.mango.hmModules.mango
           (self + /home/default.nix)
         ];
         users.${username} = import "${self}/users/${username}/home.nix";

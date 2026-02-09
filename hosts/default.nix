@@ -12,6 +12,8 @@ in
       system = "x86_64-linux";
       desktop = true;
       extraImports = [
+        # MangoWC
+        inputs.mango.nixosModules.mango
         # ../modules/graphical/hyprland.nix
         ../modules/cli/tools.nix
         ../modules/core
@@ -30,6 +32,7 @@ in
         # ../modules/graphical/dwl
         # ../modules/graphical/niri
         ../modules/graphical/kde
+        # ../modules/graphical/mangowc
         # ../modules/server/services/mpd.nix
         # ../modules/graphical/windowmaker
         ../modules/editors/nvim
@@ -43,7 +46,6 @@ in
       extraImports = [
         ../modules/cli/tools.nix
         ../modules/core
-        inputs.regalk-website.nixosModules.default
         inputs.agenix.nixosModules.default
         ../modules/server
       ];

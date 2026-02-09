@@ -7,6 +7,7 @@
     ../../home/doom-emacs
     ./graphical/fcitx5
     ./graphical/fox
+    ./graphical/mangowc
     # ./graphical/waybar
   ];
 
