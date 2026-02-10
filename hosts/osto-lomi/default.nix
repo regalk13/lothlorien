@@ -25,7 +25,7 @@
   #########################
   # Hostname & Networking #
   #########################
-  networking.hostName = "osto-lomi"; # change to whatever you like
+  networking.hostName = "osto-lomi";
 
   networking.useDHCP = true;
 
@@ -53,7 +53,7 @@
   ############################
   # System Version & Packages #
   ############################
-  system.stateVersion = "24.05"; # match the channel you added above
+  system.stateVersion = "24.05"; 
 
   users.users.regalk = {
     openssh.authorizedKeys.keys = [ ];

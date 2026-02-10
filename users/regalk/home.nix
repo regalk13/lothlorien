@@ -8,7 +8,7 @@
     ./graphical/fcitx5
     ./graphical/fox
     ./graphical/mangowc
-    # ./graphical/waybar
+    ./graphical/waybar
   ];
 
   programs.git.settings = {

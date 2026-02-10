@@ -10,43 +10,18 @@
     wl-clipboard
   ];
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    config = {
-      common = {
-        default = [
-          "wlr"
-          "gtk"
-        ];
-      };
-    };
-  };
-
   environment.sessionVariables = {
     XDG_CURRENT_DESKTOP = "wlroots";
     XDG_SESSION_TYPE = "wayland";
   };
 
-  hardware.graphics = {
+  xdg.portal = {
     enable = true;
-    package = pkgs.mesa;
-    enable32Bit = true;
+    xdgOpenUsePortal = false;
 
-    extraPackages = with pkgs; [
-      vulkan-loader
-      libva-utils
-      libvdpau-va-gl
-
-      glfw
-      glew
-    ];
-
-    extraPackages32 = with pkgs.driversi686Linux; [
-      libvdpau-va-gl
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
     ];
   };
 }

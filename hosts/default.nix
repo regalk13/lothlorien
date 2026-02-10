@@ -31,8 +31,8 @@ in
         ../modules/desktop/games
         # ../modules/graphical/dwl
         # ../modules/graphical/niri
-        ../modules/graphical/kde
-        # ../modules/graphical/mangowc
+        # ../modules/graphical/kde
+        ../modules/graphical/mangowc
         # ../modules/server/services/mpd.nix
         # ../modules/graphical/windowmaker
         ../modules/editors/nvim
